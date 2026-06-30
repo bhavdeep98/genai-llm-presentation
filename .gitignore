@@ -1,0 +1,16 @@
+# PDF downloads (large files, download locally)
+research-papers/pdfs/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.bak
