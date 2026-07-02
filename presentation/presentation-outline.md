@@ -249,20 +249,31 @@
 
 ## Section 7: Hype vs. Reality (8 min)
 
-### Slide 29: The 5 Questions Framework
+### Slide 29: The Clever Hans Problem — Are AI Models Actually Intelligent?
+- The story: A horse in 1900s Germany "solved" math by reading body language cues
+- The parallel: AI models often exploit shortcuts and spurious patterns, not genuine understanding
+- Examples in AI:
+  - Image classifier uses watermarks/backgrounds instead of recognizing objects
+  - BERT scores 77% on reasoning by exploiting dataset artifacts, not understanding arguments
+  - "Emergent abilities" may be measurement artifacts of metric choice (Schaeffer et al., 2023)
+- The question to always ask: "Is this Clever Hans? Is the model solving the problem or exploiting a shortcut?"
+- [Paper: Lapuschkin et al., 2019, Nature Communications, DOI:10.1038/s41467-019-08987-4]
+- Visual: Side-by-side — what we think the model sees vs. what it actually attends to (heatmap)
+
+### Slide 30: The 5 Questions Framework
 1. Is there a peer-reviewed paper?
 2. Are benchmarks reproducible?
 3. What's the failure mode?
 4. Who benefits from this claim?
 5. What's the base rate (vs. simpler methods)?
 
-### Slide 30: What's Real vs. What's Not
+### Slide 31: What's Real vs. What's Not
 - ✅ Real: Scaling improves capability, LoRA works, RAG helps factuality
 - ⚠️ Overstated: "Emergence," "LLMs reason," "Agents do everything"
 - ❌ Hype: "AGI in 2 years," "Models understand," "Benchmarks = real performance"
 - Visual: 3-column table with evidence links
 
-### Slide 31: The Social Media Filter
+### Slide 32: The Social Media Filter
 - Paper says "reduces hallucination by 20%" → Tweet says "Solves hallucination!"
 - Paper says "matches GPT-4 on this benchmark" → Tweet says "GPT-4 killer!"
 - Always read the limitations section
@@ -272,18 +283,18 @@
 
 ## Section 8: Call to Action — Build Something (5 min)
 
-### Slide 32: Where Innovation Happens
+### Slide 33: Where Innovation Happens
 - Real gaps: Evaluation methods, efficiency, retrieval quality, reliability
 - Methodology: Identify limitation → Hypothesize mechanism → Test → Compare to baselines
 - You now have the foundations — use them
 
-### Slide 33: Your Innovation Toolkit
+### Slide 34: Your Innovation Toolkit
 - Papers: You have the full catalog (12+ foundational papers)
 - Methods: Attention, scaling, LoRA, RLHF, RAG, agents
 - Critical thinking: The 5 Questions Framework
 - Community: arXiv, HuggingFace, open-source models
 
-### Slide 34: Closing
+### Slide 35: Closing
 - LLMs are powerful tools with real limitations
 - The basics matter more than the hype
 - Understanding *why* enables you to build *what's next*
@@ -300,6 +311,6 @@
 | Fine-Tuning/LoRA | 15 min | 19-24 |
 | APIs/RAG/Agents | 12 min | 25-28 |
 | Architectures | 8 min | 29-31 |
-| Hype vs. Reality | 8 min | 32-34 |
-| Call to Action | 5 min | 35-37 |
-| **Total** | **~92 min** | **37 slides** |
+| Hype vs. Reality | 10 min | 32-35 |
+| Call to Action | 5 min | 36-38 |
+| **Total** | **~94 min** | **38 slides** |

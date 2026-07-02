@@ -2,6 +2,41 @@
 
 ---
 
+## The Clever Hans Effect — The Perfect Analogy for AI Evaluation
+
+### The Original Story (1900s)
+A horse named "Clever Hans" in early 1900s Germany appeared to solve arithmetic problems by tapping his hoof. He could add, subtract, tell time, and identify musical tones. Scientists were baffled — until psychologist Oskar Pfungst discovered the truth: Hans was reading *involuntary body language cues* from his questioner. When the questioner didn't know the answer (or was hidden), Hans couldn't perform.
+
+### Why This Matters for AI
+Modern ML models do exactly the same thing:
+- **Benchmark contamination:** Models "solve" problems because they've memorized the test set, not because they understand the task
+- **Spurious correlations:** A model learns that photos with green backgrounds = "cow" (because training data had cows on grass), not that it recognizes cows
+- **Shortcut learning:** Models find the easiest statistical pattern that gives the right answer on the benchmark, without learning the intended capability
+- **Cherry-picked demos:** Like Hans performing for believers, AI demos are curated for success cases
+
+### Research on the Clever Hans Effect in AI
+- Lapuschkin et al. (2019) — "Unmasking Clever Hans predictors and assessing what machines really learn" (Nature Communications)
+  - DOI: 10.1038/s41467-019-08987-4
+  - Used explainability methods (LRP) to reveal that high-performing classifiers relied on watermarks, copyright tags, and background patterns rather than actual object features
+- Niven & Kao (2019) — "Probing Neural Network Comprehension of Natural Language Arguments"
+  - Showed BERT's 77% accuracy on argument reasoning was due to exploiting statistical cues in the dataset rather than understanding arguments
+- Schaeffer et al. (2023) — "Are Emergent Abilities of Large Language Models a Mirage?" (arXiv:2304.15004)
+  - "Emergent abilities" may be a Clever Hans effect of metric choice, not genuine capability
+- Frontiers in AI (2025) — "Unmasking the Clever Hans effect in AI models: shortcut learning, spurious correlations, and the path toward robust intelligence"
+  - Systematic survey across domains showing the effect is pervasive
+
+### The Takeaway for Your Audience
+> "Before you're impressed by an AI demo, ask: Is this Clever Hans? Is the model solving the problem, or did it find a shortcut that happens to give the right answer on this particular test?"
+
+### How to Apply This
+1. **Test on out-of-distribution data** — if performance drops sharply, it was relying on shortcuts
+2. **Rephrase benchmark questions** — if the model fails on paraphrases, it memorized patterns
+3. **Use explainability tools** — what is the model actually attending to?
+4. **Adversarial evaluation** — deliberately construct examples that break shortcuts
+5. **Compare to simple baselines** — if a bag-of-words model performs similarly, your "intelligent" model is probably using simple features too
+
+---
+
 ## Framework: How to Evaluate LLM Claims
 
 ### The 5 Questions to Ask
