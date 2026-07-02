@@ -8,39 +8,39 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
   <style>
     :root {
-      --r-heading-color: #1a1a2e;
-      --r-main-color: #2d2d2d;
-      --r-link-color: #0066cc;
-      --r-background-color: #fafafa;
+      --heading: #1a1a2e;
+      --text: #2d2d2d;
       --accent: #6c5ce7;
-      --accent-light: #a29bfe;
-      --success: #00b894;
-      --warn: #fdcb6e;
-      --danger: #e74c3c;
+      --accent2: #0984e3;
+      --green: #00b894;
+      --orange: #f39c12;
+      --red: #e74c3c;
+      --pink: #e84393;
+      --bg-light: #fafafa;
     }
-    .reveal { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
-    .reveal h1 { font-size: 2.2em; font-weight: 700; color: var(--r-heading-color); }
-    .reveal h2 { font-size: 1.5em; font-weight: 600; color: var(--r-heading-color); }
-    .reveal h3 { font-size: 1.1em; font-weight: 600; color: #444; }
-    .reveal p, .reveal li { font-size: 0.72em; line-height: 1.6; }
-    .reveal .subtitle { font-size: 0.85em; color: #666; margin-top: 0.3em; }
-    .reveal .citation { font-size: 0.5em; color: #999; font-style: italic; margin-top: 1.2em; }
-    .reveal .formula { font-family: 'Courier New', monospace; background: #f0f4f8; padding: 0.6em 1em; border-radius: 8px; font-size: 0.75em; display: inline-block; margin: 0.4em 0; }
-    .reveal .analogy { background: #f8f6ff; border-left: 4px solid var(--accent); padding: 0.6em 1em; border-radius: 0 8px 8px 0; margin: 0.6em 0; font-size: 0.68em; text-align: left; }
-    .reveal .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5em; text-align: left; }
-    .reveal .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1em; text-align: left; }
-    .reveal .highlight-box { background: #e8f4fd; border-radius: 8px; padding: 0.6em 0.8em; margin: 0.4em 0; font-size: 0.68em; }
-    .reveal .section-title { color: var(--accent); font-size: 0.65em; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 0.2em; }
-    .reveal table { font-size: 0.58em; margin: 0.4em auto; border-collapse: collapse; }
-    .reveal table th { background: var(--r-heading-color); color: white; padding: 0.4em 0.7em; }
-    .reveal table td { padding: 0.35em 0.7em; border-bottom: 1px solid #eee; }
-    .reveal code { font-size: 0.85em; background: #f0f4f8; padding: 0.1em 0.35em; border-radius: 3px; }
-    .reveal pre { font-size: 0.5em; }
-    .reveal pre code { background: #1a1a2e; color: #e0e0e0; padding: 0.8em; border-radius: 8px; }
-    .reveal .flow-arrow { color: var(--accent); font-size: 1.5em; margin: 0 0.2em; }
-    .reveal .big-number { font-size: 2.5em; font-weight: 700; color: var(--accent); line-height: 1; }
-    .reveal .dim-text { color: #aaa; }
+    .reveal { font-family: 'Segoe UI', system-ui, sans-serif; }
+    .reveal h1 { font-size: 2.1em; font-weight: 700; color: var(--heading); }
+    .reveal h2 { font-size: 1.45em; font-weight: 600; color: var(--heading); margin-bottom: 0.3em; }
+    .reveal h3 { font-size: 1.05em; font-weight: 600; color: #444; }
+    .reveal p, .reveal li { font-size: 0.68em; line-height: 1.55; }
+    .reveal ul { margin-left: 0.5em; }
+    .reveal .subtitle { font-size: 0.8em; color: #666; }
+    .reveal .citation { font-size: 0.48em; color: #aaa; font-style: italic; margin-top: 1em; }
+    .reveal .formula { font-family: 'Courier New', monospace; background: #f0f4f8; padding: 0.5em 0.9em; border-radius: 6px; font-size: 0.72em; display: inline-block; margin: 0.3em 0; }
+    .reveal .analogy { background: #f8f6ff; border-left: 4px solid var(--accent); padding: 0.5em 0.9em; border-radius: 0 6px 6px 0; margin: 0.5em 0; font-size: 0.64em; text-align: left; }
+    .reveal .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; text-align: left; }
+    .reveal .highlight-box { background: #e8f4fd; border-radius: 6px; padding: 0.5em 0.7em; margin: 0.3em 0; font-size: 0.64em; }
+    .reveal .warn-box { background: #fff3e0; border-left: 4px solid var(--orange); padding: 0.5em 0.7em; border-radius: 0 6px 6px 0; margin: 0.3em 0; font-size: 0.64em; }
+    .reveal .section-label { color: var(--accent); font-size: 0.6em; text-transform: uppercase; letter-spacing: 3px; }
+    .reveal table { font-size: 0.55em; margin: 0.3em auto; border-collapse: collapse; }
+    .reveal table th { background: var(--heading); color: white; padding: 0.35em 0.6em; }
+    .reveal table td { padding: 0.3em 0.6em; border-bottom: 1px solid #eee; }
+    .reveal code { font-size: 0.82em; background: #f0f4f8; padding: 0.1em 0.3em; border-radius: 3px; }
+    .reveal pre code { background: #1a1a2e; color: #e0e0e0; padding: 0.7em; border-radius: 6px; display: block; }
+    .reveal .flow { color: var(--accent); font-size: 1.3em; margin: 0 0.15em; }
     .reveal svg text { font-family: 'Segoe UI', system-ui, sans-serif; }
+    .reveal .speaker-intro { display: grid; grid-template-columns: auto 1fr; gap: 1.5em; align-items: center; text-align: left; }
+    .reveal .speaker-intro img { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); }
   </style>
 </head>
 <body>
@@ -50,512 +50,549 @@
 <!-- ============ TITLE ============ -->
 <section>
   <h1>Generative AI & LLMs</h1>
-  <p style="font-size:1.05em; color:#444; margin-top:0.2em;">Architectures, Fine-Tuning, and Building What's Next</p>
-  <p class="subtitle">A research-grounded guide for builders</p>
-  <br>
-  <p style="font-size:0.7em; color:#666;">Bhavdeep Singh Sachdeva</p>
-  <p style="font-size:0.55em; color:#999;">Mentor: Swaroop Mishra (Google DeepMind)</p>
+  <p style="font-size:1em; color:#444;">Architectures, Fine-Tuning, and Building What's Next</p>
+  <p class="subtitle">A research-grounded deep dive for builders and researchers</p>
 </section>
 
-<!-- ============ OVERVIEW ============ -->
+<!-- ============ SPEAKER INTRO ============ -->
 <section>
-  <h2>What This Talk Is About</h2>
-  <div class="three-col" style="margin-top:1em;">
-    <div style="text-align:center;">
-      <p class="big-number">📄</p>
-      <p><strong>Original Papers</strong><br>Every claim sourced</p>
-    </div>
-    <div style="text-align:center;">
-      <p class="big-number">🔍</p>
-      <p><strong>First Principles</strong><br>Understand <em>why</em></p>
-    </div>
-    <div style="text-align:center;">
-      <p class="big-number">🛠️</p>
-      <p><strong>Build</strong><br>Foundation to innovate</p>
+  <div class="speaker-intro">
+    <img src="https://bhavdeep98.github.io/images/profile-new-optimized.jpg" alt="Bhavdeep Singh Sachdeva">
+    <div>
+      <h2 style="margin-bottom:0.1em;">Bhavdeep Singh Sachdeva</h2>
+      <p style="font-size:0.75em; color:#666; margin:0.2em 0;">Software Engineer @ AWS GuardDuty · AI Researcher · NLP Expert</p>
+      <p style="font-size:0.65em; margin:0.5em 0;">M.S. Computer Science, Arizona State University</p>
+      <p style="font-size:0.6em; color:#555; margin:0.3em 0;"><strong>Research:</strong> AI Safety, Benchmark Development, Multi-Agent Systems, Robustness</p>
+      <p style="font-size:0.6em; color:#555; margin:0.3em 0;"><strong>Publications:</strong> ACL, EACL, SustaiNLP · Numerical reasoning, data quality, multilingual AI (Project Aya)</p>
+      <p style="font-size:0.55em; color:#999; margin-top:0.6em;">bhavdeepsachdeva@gmail.com · scholar.google.com · linkedin.com/in/bssachde</p>
     </div>
   </div>
-  <p style="margin-top:1.5em; font-size:0.7em;">We'll separate <strong>substance</strong> from <strong>hype</strong> — paper by paper.</p>
 </section>
 
-<!-- ============ TIMELINE ============ -->
+<!-- ============ AGENDA — placeholder ============ -->
 <section>
-  <h2>The Journey We'll Trace</h2>
-  <svg viewBox="0 0 1000 320" style="width:100%; max-width:1000px;">
-    <!-- Timeline line -->
-    <line x1="50" y1="160" x2="950" y2="160" stroke="#ddd" stroke-width="3"/>
-    <!-- Year markers -->
-    <circle cx="100" cy="160" r="8" fill="#6c5ce7"/><text x="100" y="195" text-anchor="middle" font-size="12" fill="#666">2017</text>
-    <circle cx="220" cy="160" r="8" fill="#6c5ce7"/><text x="220" y="195" text-anchor="middle" font-size="12" fill="#666">2018-20</text>
-    <circle cx="380" cy="160" r="8" fill="#00b894"/><text x="380" y="195" text-anchor="middle" font-size="12" fill="#666">2021</text>
-    <circle cx="530" cy="160" r="8" fill="#00b894"/><text x="530" y="195" text-anchor="middle" font-size="12" fill="#666">2022</text>
-    <circle cx="700" cy="160" r="8" fill="#00b894"/><text x="700" y="195" text-anchor="middle" font-size="12" fill="#666">2023</text>
-    <circle cx="880" cy="160" r="8" fill="#00b894"/><text x="880" y="195" text-anchor="middle" font-size="12" fill="#666">2024</text>
-    <!-- Labels above -->
-    <text x="100" y="130" text-anchor="middle" font-size="11" fill="#333" font-weight="bold">Transformers</text>
-    <text x="220" y="115" text-anchor="middle" font-size="11" fill="#333" font-weight="bold">GPT-1/2/3</text>
-    <text x="220" y="130" text-anchor="middle" font-size="10" fill="#666">Scaling Laws</text>
-    <text x="380" y="115" text-anchor="middle" font-size="11" fill="#00b894" font-weight="bold">Natural Instructions</text>
-    <text x="380" y="130" text-anchor="middle" font-size="10" fill="#666">LoRA</text>
-    <text x="530" y="100" text-anchor="middle" font-size="11" fill="#00b894" font-weight="bold">NumGLUE, LILA</text>
-    <text x="530" y="115" text-anchor="middle" font-size="10" fill="#666">Chinchilla, RLHF</text>
-    <text x="530" y="130" text-anchor="middle" font-size="10" fill="#00b894">Super-NatInst</text>
-    <text x="700" y="115" text-anchor="middle" font-size="11" fill="#00b894" font-weight="bold">Self-Instruct</text>
-    <text x="700" y="130" text-anchor="middle" font-size="10" fill="#666">DPO, QLoRA, JEPA</text>
-    <text x="880" y="115" text-anchor="middle" font-size="11" fill="#00b894" font-weight="bold">Self-Discover</text>
-    <text x="880" y="130" text-anchor="middle" font-size="10" fill="#666">IMO Silver, V-JEPA</text>
-    <!-- Legend -->
-    <circle cx="350" cy="270" r="6" fill="#6c5ce7"/><text x="365" y="275" font-size="11" fill="#666">Field milestones</text>
-    <circle cx="530" cy="270" r="6" fill="#00b894"/><text x="545" y="275" font-size="11" fill="#666">Our research contributions</text>
-  </svg>
+  <h2>Talk Structure</h2>
+  <p style="font-size:0.9em; color:#999;">&lt;to be added later once done with all slides&gt;</p>
 </section>
 
 <!-- ============ SECTION 1 HEADER ============ -->
 <section>
-  <p class="section-title">Section 1</p>
+  <p class="section-label">Section 1</p>
   <h1>The Foundation</h1>
-  <h2 style="color:var(--accent);">LLM Architecture</h2>
-  <p style="font-size:0.7em; color:#666; margin-top:1em;">From words → vectors → attention → prediction</p>
+  <h2 style="color:var(--accent);">Language Models & the Transformer Architecture</h2>
+  <p style="font-size:0.65em; color:#666; margin-top:0.8em;">What is language modeling? How did we get to GPT, Llama, and Claude? What's actually inside?</p>
 </section>
 
 
-<!-- ============ SLIDE: What is an LLM — The Mystery Novel ============ -->
+<!-- ============ WHAT IS LANGUAGE MODELING ============ -->
 <section>
-  <h2>What Is an LLM, Really?</h2>
-  <p style="font-size:0.8em;">A <strong>next-token prediction machine</strong></p>
-  <svg viewBox="0 0 900 280" style="width:90%; margin-top:0.5em;">
-    <!-- Book/story -->
-    <rect x="30" y="30" width="200" height="140" rx="8" fill="#f8f6ff" stroke="#6c5ce7" stroke-width="2"/>
-    <text x="130" y="60" text-anchor="middle" font-size="12" fill="#6c5ce7" font-weight="bold">📖 The Story</text>
-    <text x="130" y="85" text-anchor="middle" font-size="10" fill="#555">Chapter 1... Chapter 5...</text>
-    <text x="130" y="105" text-anchor="middle" font-size="10" fill="#555">All the context so far</text>
-    <text x="130" y="135" text-anchor="middle" font-size="11" fill="#333" font-weight="bold">"The murderer is ___"</text>
-    <text x="130" y="155" text-anchor="middle" font-size="9" fill="#999">(the next token to predict)</text>
-    <!-- Arrow -->
-    <path d="M 245 100 L 310 100" stroke="#6c5ce7" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
-    <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#6c5ce7"/></marker></defs>
-    <!-- Clues highlighted -->
-    <rect x="320" y="30" width="200" height="140" rx="8" fill="#fff9e6" stroke="#f39c12" stroke-width="2"/>
-    <text x="420" y="60" text-anchor="middle" font-size="12" fill="#f39c12" font-weight="bold">🔍 Relevant Clues</text>
-    <text x="420" y="85" text-anchor="middle" font-size="10" fill="#555">"motive" → attended</text>
-    <text x="420" y="105" text-anchor="middle" font-size="10" fill="#555">"weapon" → attended</text>
-    <text x="420" y="125" text-anchor="middle" font-size="10" fill="#555">"alibi broken" → attended</text>
-    <text x="420" y="150" text-anchor="middle" font-size="9" fill="#999">Attention picks these out</text>
-    <!-- Arrow -->
-    <path d="M 535 100 L 600 100" stroke="#f39c12" stroke-width="2" fill="none" marker-end="url(#arrowhead2)"/>
-    <defs><marker id="arrowhead2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#f39c12"/></marker></defs>
-    <!-- Probability distribution -->
-    <rect x="610" y="30" width="260" height="140" rx="8" fill="#e8f8f5" stroke="#00b894" stroke-width="2"/>
-    <text x="740" y="55" text-anchor="middle" font-size="12" fill="#00b894" font-weight="bold">📊 Prediction</text>
-    <!-- Bars -->
-    <rect x="640" y="75" width="140" height="16" rx="3" fill="#00b894" opacity="0.8"/><text x="790" y="87" font-size="10" fill="#333">Colonel Mustard (62%)</text>
-    <rect x="640" y="97" width="60" height="16" rx="3" fill="#00b894" opacity="0.5"/><text x="790" y="109" font-size="10" fill="#333">Professor Plum (18%)</text>
-    <rect x="640" y="119" width="35" height="16" rx="3" fill="#00b894" opacity="0.3"/><text x="790" y="131" font-size="10" fill="#333">Ms. Scarlet (9%)</text>
-    <rect x="640" y="141" width="20" height="16" rx="3" fill="#00b894" opacity="0.2"/><text x="790" y="153" font-size="10" fill="#666">others...</text>
-    <!-- Flow labels -->
-    <text x="278" y="85" text-anchor="middle" font-size="9" fill="#6c5ce7">context</text>
-    <text x="568" y="85" text-anchor="middle" font-size="9" fill="#f39c12">attend</text>
-    <!-- Bottom summary -->
-    <text x="450" y="220" text-anchor="middle" font-size="13" fill="#333">Context → Attention finds relevant clues → Probability over candidates</text>
-    <text x="450" y="245" text-anchor="middle" font-size="11" fill="#666">The architecture's job: figure out which clues matter most</text>
-  </svg>
-  <p class="citation">Every LLM capability emerges from this single objective: minimize prediction error on the next token</p>
-</section>
-
-
-<!-- ============ SLIDE: Embeddings — High-Dimensional Space ============ -->
-<section>
-  <h2>Embeddings — Words as Vectors in Space</h2>
-  <p style="font-size:0.7em;">Each word becomes a <strong>point in a high-dimensional space</strong> where geometry encodes meaning</p>
-  <svg viewBox="0 0 900 320" style="width:90%; margin-top:0.3em;">
-    <!-- Coordinate axes (stylized 3D) -->
-    <line x1="80" y1="250" x2="80" y2="50" stroke="#ccc" stroke-width="1.5"/>
-    <line x1="80" y1="250" x2="350" y2="250" stroke="#ccc" stroke-width="1.5"/>
-    <line x1="80" y1="250" x2="30" y2="290" stroke="#ccc" stroke-width="1.5"/>
-    <text x="75" y="40" font-size="9" fill="#999">dim 2</text>
-    <text x="355" y="255" font-size="9" fill="#999">dim 1</text>
-    <text x="15" y="298" font-size="9" fill="#999">dim 3</text>
-    <!-- Animal cluster -->
-    <circle cx="150" cy="180" r="5" fill="#e74c3c"/>
-    <text x="160" y="178" font-size="10" fill="#e74c3c">cat</text>
-    <circle cx="170" cy="195" r="5" fill="#e74c3c"/>
-    <text x="180" y="193" font-size="10" fill="#e74c3c">dog</text>
-    <circle cx="140" cy="200" r="5" fill="#e74c3c"/>
-    <text x="115" y="205" font-size="10" fill="#e74c3c">lion</text>
-    <ellipse cx="155" cy="192" rx="45" ry="30" fill="none" stroke="#e74c3c" stroke-width="1" stroke-dasharray="4"/>
-    <text x="155" y="235" text-anchor="middle" font-size="9" fill="#e74c3c">animals</text>
-    <!-- Country cluster -->
-    <circle cx="280" cy="100" r="5" fill="#2980b9"/>
-    <text x="290" y="98" font-size="10" fill="#2980b9">France</text>
-    <circle cx="300" cy="120" r="5" fill="#2980b9"/>
-    <text x="310" y="118" font-size="10" fill="#2980b9">Italy</text>
-    <circle cx="270" cy="115" r="5" fill="#2980b9"/>
-    <text x="240" y="113" font-size="10" fill="#2980b9">Japan</text>
-    <ellipse cx="283" cy="112" rx="40" ry="28" fill="none" stroke="#2980b9" stroke-width="1" stroke-dasharray="4"/>
-    <text x="283" y="148" text-anchor="middle" font-size="9" fill="#2980b9">countries</text>
-    <!-- Royalty cluster with direction encoding -->
-    <circle cx="550" cy="90" r="6" fill="#6c5ce7"/>
-    <text x="565" y="88" font-size="11" fill="#6c5ce7" font-weight="bold">King</text>
-    <circle cx="550" cy="190" r="6" fill="#6c5ce7"/>
-    <text x="565" y="188" font-size="11" fill="#6c5ce7" font-weight="bold">Man</text>
-    <circle cx="720" cy="90" r="6" fill="#e84393"/>
-    <text x="735" y="88" font-size="11" fill="#e84393" font-weight="bold">Queen</text>
-    <circle cx="720" cy="190" r="6" fill="#e84393"/>
-    <text x="735" y="188" font-size="11" fill="#e84393" font-weight="bold">Woman</text>
-    <!-- Direction arrows -->
-    <path d="M 555 95 L 555 183" stroke="#00b894" stroke-width="2" marker-end="url(#garrow)"/>
-    <path d="M 725 95 L 725 183" stroke="#00b894" stroke-width="2" marker-end="url(#garrow)"/>
-    <text x="575" y="145" font-size="9" fill="#00b894" font-weight="bold">gender direction</text>
-    <path d="M 557 88 L 713 88" stroke="#f39c12" stroke-width="2" marker-end="url(#oarrow)"/>
-    <path d="M 557 192 L 713 192" stroke="#f39c12" stroke-width="2" marker-end="url(#oarrow)"/>
-    <text x="635" y="78" font-size="9" fill="#f39c12" font-weight="bold">royalty direction</text>
-    <defs>
-      <marker id="garrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#00b894"/></marker>
-      <marker id="oarrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#f39c12"/></marker>
-    </defs>
-    <!-- Formula -->
-    <rect x="520" y="220" width="280" height="40" rx="6" fill="#f0f4f8"/>
-    <text x="660" y="245" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">King − Man + Woman ≈ Queen</text>
-    <!-- Dimension note -->
-    <text x="450" y="305" text-anchor="middle" font-size="11" fill="#666">Real LLMs: 4,096–12,288 dimensions (we can only visualize 2–3)</text>
-  </svg>
-  <p class="citation">Mikolov et al., 2013, "Efficient Estimation of Word Representations in Vector Space," arXiv:1301.3781 · Visual inspired by 3Blue1Brown "But what is a GPT?" (2024)</p>
-</section>
-
-
-<!-- ============ SLIDE: Embeddings — What Directions Encode ============ -->
-<section>
-  <h2>Directions Encode Meaning</h2>
-  <p style="font-size:0.7em;">In embedding space, <strong>consistent directions</strong> capture consistent relationships</p>
-  <svg viewBox="0 0 900 250" style="width:88%; margin-top:0.5em;">
-    <!-- Row 1: Gender -->
-    <text x="30" y="50" font-size="11" fill="#00b894" font-weight="bold">Gender direction →</text>
-    <circle cx="250" cy="45" r="5" fill="#6c5ce7"/><text x="265" y="49" font-size="10">king</text>
-    <path d="M 300 45 L 380 45" stroke="#00b894" stroke-width="2" marker-end="url(#dir1)"/>
-    <circle cx="400" cy="45" r="5" fill="#e84393"/><text x="415" y="49" font-size="10">queen</text>
-    <circle cx="530" cy="45" r="5" fill="#6c5ce7"/><text x="545" y="49" font-size="10">man</text>
-    <path d="M 575 45 L 655 45" stroke="#00b894" stroke-width="2" marker-end="url(#dir1)"/>
-    <circle cx="675" cy="45" r="5" fill="#e84393"/><text x="690" y="49" font-size="10">woman</text>
-    <!-- Row 2: Capital -->
-    <text x="30" y="110" font-size="11" fill="#f39c12" font-weight="bold">Capital direction →</text>
-    <circle cx="250" cy="105" r="5" fill="#2980b9"/><text x="265" y="109" font-size="10">France</text>
-    <path d="M 315" y1="105" x2="380" y2="105" stroke="#f39c12" stroke-width="2" marker-end="url(#dir2)"/>
-    <circle cx="400" cy="105" r="5" fill="#e74c3c"/><text x="415" y="109" font-size="10">Paris</text>
-    <circle cx="530" cy="105" r="5" fill="#2980b9"/><text x="545" y="109" font-size="10">Italy</text>
-    <path d="M 575 105 L 655 105" stroke="#f39c12" stroke-width="2" marker-end="url(#dir2)"/>
-    <circle cx="675" cy="105" r="5" fill="#e74c3c"/><text x="690" y="109" font-size="10">Rome</text>
-    <!-- Row 3: Tense -->
-    <text x="30" y="170" font-size="11" fill="#6c5ce7" font-weight="bold">Tense direction →</text>
-    <circle cx="250" cy="165" r="5" fill="#555"/><text x="265" y="169" font-size="10">walk</text>
-    <path d="M 295 165 L 375 165" stroke="#6c5ce7" stroke-width="2" marker-end="url(#dir3)"/>
-    <circle cx="395" cy="165" r="5" fill="#555"/><text x="410" y="169" font-size="10">walked</text>
-    <circle cx="530" cy="165" r="5" fill="#555"/><text x="545" y="169" font-size="10">swim</text>
-    <path d="M 575 165 L 655 165" stroke="#6c5ce7" stroke-width="2" marker-end="url(#dir3)"/>
-    <circle cx="675" cy="165" r="5" fill="#555"/><text x="690" y="169" font-size="10">swam</text>
-    <defs>
-      <marker id="dir1" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#00b894"/></marker>
-      <marker id="dir2" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#f39c12"/></marker>
-      <marker id="dir3" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6c5ce7"/></marker>
-    </defs>
-    <!-- Key insight -->
-    <rect x="200" y="200" width="500" height="35" rx="6" fill="#f8f6ff" stroke="#6c5ce7" stroke-width="1"/>
-    <text x="450" y="222" text-anchor="middle" font-size="11" fill="#333">Each dimension isn't one feature — <tspan font-weight="bold">directions</tspan> in the space encode features</text>
-  </svg>
-  <p class="citation">These relationships are not programmed — they emerge from seeing words in similar contexts during training</p>
-</section>
-
-<!-- ============ SLIDE: The Bridge — from Embeddings to Attention ============ -->
-<section>
-  <h2>So We Have Vectors... Now What?</h2>
-  <div class="analogy">
-    <strong>The problem:</strong> Every word starts as an <em>isolated</em> vector. 
-    "Bank" has the same embedding whether it means river bank or financial bank.<br><br>
-    <strong>We need context.</strong> The word's meaning depends on the words <em>around</em> it.
-  </div>
-  <p style="font-size:0.75em; margin-top:1em;">
-    <strong>Attention</strong> solves this: it lets every token look at every other token 
-    and decide <em>"who should I listen to?"</em>
-  </p>
-  <div style="font-size:0.8em; margin-top:1em;">
-    <span style="color:#6c5ce7;">Embedding</span>
-    <span class="flow-arrow">→</span>
-    <span style="color:#f39c12;">Attention (contextualize)</span>
-    <span class="flow-arrow">→</span>
-    <span style="color:#00b894;">Rich, context-aware representation</span>
-  </div>
-  <p class="citation">This is the core insight of Transformers: embeddings give you meaning; attention gives you context</p>
-</section>
-
-
-<!-- ============ SLIDE: Attention Q/K/V ============ -->
-<section>
-  <h2>Attention — Who Should I Listen To?</h2>
-  <svg viewBox="0 0 900 220" style="width:88%; margin-top:0.3em;">
-    <!-- Q box -->
-    <rect x="30" y="30" width="240" height="80" rx="8" fill="#e8f4fd" stroke="#2980b9" stroke-width="2"/>
-    <text x="150" y="55" text-anchor="middle" font-size="13" fill="#2980b9" font-weight="bold">Query (Q)</text>
-    <text x="150" y="78" text-anchor="middle" font-size="11" fill="#333">"What am I looking for?"</text>
-    <text x="150" y="98" text-anchor="middle" font-size="10" fill="#666">🕵️ The detective's question</text>
-    <!-- K box -->
-    <rect x="330" y="30" width="240" height="80" rx="8" fill="#fff9e6" stroke="#f39c12" stroke-width="2"/>
-    <text x="450" y="55" text-anchor="middle" font-size="13" fill="#f39c12" font-weight="bold">Key (K)</text>
-    <text x="450" y="78" text-anchor="middle" font-size="11" fill="#333">"What do I offer?"</text>
-    <text x="450" y="98" text-anchor="middle" font-size="10" fill="#666">📋 Which clues respond</text>
-    <!-- V box -->
-    <rect x="630" y="30" width="240" height="80" rx="8" fill="#e8f8f5" stroke="#00b894" stroke-width="2"/>
-    <text x="750" y="55" text-anchor="middle" font-size="13" fill="#00b894" font-weight="bold">Value (V)</text>
-    <text x="750" y="78" text-anchor="middle" font-size="11" fill="#333">"What info do I actually give?"</text>
-    <text x="750" y="98" text-anchor="middle" font-size="10" fill="#666">💡 What the clue reveals</text>
-    <!-- Flow arrows -->
-    <path d="M 270 70 L 325 70" stroke="#999" stroke-width="1.5" marker-end="url(#sarrow)"/>
-    <path d="M 570 70 L 625 70" stroke="#999" stroke-width="1.5" marker-end="url(#sarrow)"/>
-    <defs><marker id="sarrow" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" fill="#999"/></marker></defs>
-    <!-- Formula below -->
-    <rect x="200" y="140" width="500" height="45" rx="8" fill="#f0f4f8"/>
-    <text x="450" y="168" text-anchor="middle" font-size="14" fill="#333" font-family="Courier New">Attention(Q,K,V) = softmax(QK<tspan baseline-shift="super" font-size="10">T</tspan> / √d<tspan baseline-shift="sub" font-size="10">k</tspan>) · V</text>
-    <!-- Annotation -->
-    <text x="450" y="210" text-anchor="middle" font-size="10" fill="#666">Dot product measures relevance → softmax normalizes to probabilities → weighted sum of values</text>
-  </svg>
-  <p class="citation">Vaswani et al., 2017, "Attention Is All You Need," arXiv:1706.03762 · Visual: 3Blue1Brown "Attention in transformers" (2024)</p>
-</section>
-
-<!-- ============ SLIDE: Multi-Head Attention ============ -->
-<section>
-  <h2>Multi-Head Attention — Multiple Perspectives</h2>
-  <svg viewBox="0 0 900 200" style="width:85%; margin-top:0.5em;">
-    <!-- Input -->
-    <rect x="30" y="70" width="80" height="60" rx="6" fill="#f0f4f8" stroke="#999"/>
-    <text x="70" y="105" text-anchor="middle" font-size="11" fill="#333">Input</text>
-    <!-- Split arrows -->
-    <path d="M 115 85 L 170 50" stroke="#999" stroke-width="1.5" marker-end="url(#marr)"/>
-    <path d="M 115 100 L 170 100" stroke="#999" stroke-width="1.5" marker-end="url(#marr)"/>
-    <path d="M 115 115 L 170 150" stroke="#999" stroke-width="1.5" marker-end="url(#marr)"/>
-    <!-- Head boxes -->
-    <rect x="175" y="25" width="120" height="45" rx="6" fill="#e74c3c" opacity="0.15" stroke="#e74c3c"/>
-    <text x="235" y="45" text-anchor="middle" font-size="10" fill="#e74c3c" font-weight="bold">Head 1: Syntax</text>
-    <text x="235" y="60" text-anchor="middle" font-size="9" fill="#666">"subject → verb"</text>
-    <rect x="175" y="78" width="120" height="45" rx="6" fill="#2980b9" opacity="0.15" stroke="#2980b9"/>
-    <text x="235" y="98" text-anchor="middle" font-size="10" fill="#2980b9" font-weight="bold">Head 2: Coreference</text>
-    <text x="235" y="113" text-anchor="middle" font-size="9" fill="#666">"they → students"</text>
-    <rect x="175" y="131" width="120" height="45" rx="6" fill="#00b894" opacity="0.15" stroke="#00b894"/>
-    <text x="235" y="151" text-anchor="middle" font-size="10" fill="#00b894" font-weight="bold">Head 3: Semantic</text>
-    <text x="235" y="166" text-anchor="middle" font-size="9" fill="#666">"happy ↔ joy"</text>
-    <!-- Dots for more heads -->
-    <text x="235" y="190" text-anchor="middle" font-size="12" fill="#999">... × 8–128 heads</text>
-    <!-- Concat -->
-    <path d="M 300 50 L 380 100" stroke="#999" stroke-width="1.5" marker-end="url(#marr)"/>
-    <path d="M 300 100 L 380 100" stroke="#999" stroke-width="1.5" marker-end="url(#marr)"/>
-    <path d="M 300 150 L 380 100" stroke="#999" stroke-width="1.5" marker-end="url(#marr)"/>
-    <rect x="385" y="75" width="90" height="50" rx="6" fill="#f8f6ff" stroke="#6c5ce7"/>
-    <text x="430" y="98" text-anchor="middle" font-size="10" fill="#6c5ce7" font-weight="bold">Concat</text>
-    <text x="430" y="113" text-anchor="middle" font-size="9" fill="#666">+ Project</text>
-    <!-- Output -->
-    <path d="M 480 100 L 530 100" stroke="#6c5ce7" stroke-width="2" marker-end="url(#marr)"/>
-    <rect x="535" y="75" width="100" height="50" rx="6" fill="#6c5ce7" opacity="0.1" stroke="#6c5ce7" stroke-width="2"/>
-    <text x="585" y="98" text-anchor="middle" font-size="10" fill="#6c5ce7" font-weight="bold">Rich output</text>
-    <text x="585" y="113" text-anchor="middle" font-size="9" fill="#666">all perspectives</text>
-    <defs><marker id="marr" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" fill="#999"/></marker></defs>
-    <!-- Key insight -->
-    <text x="700" y="60" font-size="11" fill="#333" font-weight="bold">Key insight:</text>
-    <text x="700" y="80" font-size="10" fill="#555">No head is programmed</text>
-    <text x="700" y="96" font-size="10" fill="#555">for a specific role.</text>
-    <text x="700" y="116" font-size="10" fill="#555">Roles <tspan font-weight="bold" fill="#6c5ce7">emerge</tspan> from</text>
-    <text x="700" y="132" font-size="10" fill="#555">training data.</text>
-  </svg>
-  <p class="citation">Vaswani et al., 2017 · Clark et al., 2019 · Voita et al., 2019, "Specialized Heads Do the Heavy Lifting," ACL</p>
-</section>
-
-
-<!-- ============ SLIDE: MLP — Where Facts Live ============ -->
-<section>
-  <h2>MLP Layers — Where Facts Live</h2>
-  <div class="two-col">
+  <h2>What Is Language Modeling?</h2>
+  <p style="font-size:0.75em;">The task of assigning a <strong>probability to a sequence of words</strong>.</p>
+  <div class="formula">P(w₁, w₂, ..., wₙ) = ∏ P(wᵢ | w₁, ..., wᵢ₋₁)</div>
+  <p style="font-size:0.65em;">Given everything before, predict what comes next. That's it. Every LLM does this.</p>
+  <div class="two-col" style="margin-top:0.8em;">
     <div>
-      <svg viewBox="0 0 300 200" style="width:100%;">
-        <rect x="20" y="20" width="260" height="70" rx="8" fill="#e8f4fd" stroke="#2980b9" stroke-width="2"/>
-        <text x="150" y="50" text-anchor="middle" font-size="13" fill="#2980b9" font-weight="bold">Attention</text>
-        <text x="150" y="72" text-anchor="middle" font-size="10" fill="#555">Routes information between tokens</text>
-        <text x="150" y="85" text-anchor="middle" font-size="9" fill="#999">"Who should talk to whom?"</text>
-        <path d="M 150 95 L 150 115" stroke="#999" stroke-width="2" marker-end="url(#darr)"/>
-        <rect x="20" y="120" width="260" height="70" rx="8" fill="#e8f8f5" stroke="#00b894" stroke-width="2"/>
-        <text x="150" y="150" text-anchor="middle" font-size="13" fill="#00b894" font-weight="bold">MLP (Feed-Forward)</text>
-        <text x="150" y="172" text-anchor="middle" font-size="10" fill="#555">Stores & retrieves knowledge</text>
-        <text x="150" y="185" text-anchor="middle" font-size="9" fill="#999">"Eiffel Tower → Paris"</text>
-        <defs><marker id="darr" markerWidth="7" markerHeight="5" refX="3.5" refY="5" orient="auto"><polygon points="0 0, 7 0, 3.5 5" fill="#999"/></marker></defs>
-      </svg>
+      <h3>The History</h3>
+      <table>
+        <tr><th>Era</th><th>Approach</th><th>Example</th></tr>
+        <tr><td>1990s</td><td>N-gram models</td><td>Bigram/trigram counts</td></tr>
+        <tr><td>2013</td><td>Neural LMs</td><td>Word2Vec, NNLM</td></tr>
+        <tr><td>2015-17</td><td>RNN/LSTM LMs</td><td>ELMo</td></tr>
+        <tr><td>2017+</td><td>Transformers</td><td>BERT, GPT, Llama</td></tr>
+      </table>
     </div>
     <div>
-      <h3>Research evidence:</h3>
-      <ul style="font-size:0.9em;">
-        <li>Specific neurons encode specific facts</li>
-        <li>Suppressing neurons removes the fact</li>
-        <li>MLP acts as a <strong>key-value memory</strong></li>
-        <li>~66% of GPT-3's parameters are in MLPs</li>
+      <h3>What "Large" Means Today</h3>
+      <table>
+        <tr><th>Model</th><th>Params</th><th>Lab</th></tr>
+        <tr><td>BERT (2018)</td><td>340M</td><td>Google</td></tr>
+        <tr><td>GPT-3 (2020)</td><td>175B</td><td>OpenAI</td></tr>
+        <tr><td>Llama 3 (2024)</td><td>405B</td><td>Meta</td></tr>
+        <tr><td>GPT-4 (2023)</td><td>~1.8T (MoE)</td><td>OpenAI</td></tr>
+        <tr><td>Claude 3.5 (2024)</td><td>undisclosed</td><td>Anthropic</td></tr>
+        <tr><td>Gemini (2024)</td><td>undisclosed</td><td>Google</td></tr>
+      </table>
+    </div>
+  </div>
+  <p class="citation">Shannon, 1948, "A Mathematical Theory of Communication" · Bengio et al., 2003, "A Neural Probabilistic Language Model" · Mikolov et al., 2010</p>
+</section>
+
+<!-- ============ LLMs TODAY ============ -->
+<section>
+  <h2>Large Language Models Today</h2>
+  <p style="font-size:0.7em;">All modern LLMs share one core design: a <strong>Transformer</strong> trained on next-token prediction at massive scale.</p>
+  <svg viewBox="0 0 900 230" style="width:90%; margin-top:0.3em;">
+    <!-- Three architecture types -->
+    <rect x="30" y="30" width="250" height="90" rx="8" fill="#e8f4fd" stroke="#2980b9" stroke-width="1.5"/>
+    <text x="155" y="55" text-anchor="middle" font-size="11" fill="#2980b9" font-weight="bold">Encoder-Only</text>
+    <text x="155" y="75" text-anchor="middle" font-size="10" fill="#333">Bidirectional context</text>
+    <text x="155" y="95" text-anchor="middle" font-size="9" fill="#666">BERT, RoBERTa, DeBERTa</text>
+    <text x="155" y="112" text-anchor="middle" font-size="9" fill="#999">Understanding tasks (classification, NER)</text>
+    
+    <rect x="320" y="30" width="250" height="90" rx="8" fill="#e8f8f5" stroke="#00b894" stroke-width="1.5"/>
+    <text x="445" y="55" text-anchor="middle" font-size="11" fill="#00b894" font-weight="bold">Decoder-Only ★</text>
+    <text x="445" y="75" text-anchor="middle" font-size="10" fill="#333">Autoregressive (left-to-right)</text>
+    <text x="445" y="95" text-anchor="middle" font-size="9" fill="#666">GPT, Llama, Claude, Gemini, Mistral</text>
+    <text x="445" y="112" text-anchor="middle" font-size="9" fill="#999">Generation tasks (chat, code, reasoning)</text>
+    
+    <rect x="610" y="30" width="260" height="90" rx="8" fill="#fff9e6" stroke="#f39c12" stroke-width="1.5"/>
+    <text x="740" y="55" text-anchor="middle" font-size="11" fill="#f39c12" font-weight="bold">Encoder-Decoder</text>
+    <text x="740" y="75" text-anchor="middle" font-size="10" fill="#333">Full seq-to-seq</text>
+    <text x="740" y="95" text-anchor="middle" font-size="9" fill="#666">T5, BART, Flan-T5</text>
+    <text x="740" y="112" text-anchor="middle" font-size="9" fill="#999">Translation, summarization</text>
+    
+    <!-- Annotation -->
+    <rect x="320" y="135" width="250" height="30" rx="4" fill="#00b894" opacity="0.1" stroke="#00b894"/>
+    <text x="445" y="155" text-anchor="middle" font-size="10" fill="#00b894" font-weight="bold">★ This is what all frontier LLMs use today</text>
+    
+    <!-- Bottom: key point -->
+    <text x="450" y="195" text-anchor="middle" font-size="12" fill="#333">The architecture is from <tspan font-weight="bold">one paper</tspan> (Vaswani et al., 2017).</text>
+    <text x="450" y="215" text-anchor="middle" font-size="11" fill="#666">Everything since then is primarily about <tspan font-weight="bold" fill="#6c5ce7">scale, data, and training methodology</tspan>.</text>
+  </svg>
+  <p class="citation">Vaswani et al., 2017 · Devlin et al., 2018 (BERT) · Radford et al., 2018 (GPT) · Touvron et al., 2023 (Llama) · Raffel et al., 2019 (T5)</p>
+</section>
+
+
+<!-- ============ NEXT TOKEN PREDICTION — MYSTERY NOVEL ============ -->
+<section>
+  <h2>The Core Task: Next-Token Prediction</h2>
+  <p style="font-size:0.7em;">Given all tokens so far, output a probability distribution over the <strong>entire vocabulary</strong> (~50K–100K+ tokens).</p>
+  <svg viewBox="0 0 900 250" style="width:90%;">
+    <!-- Context sequence -->
+    <rect x="30" y="30" width="520" height="60" rx="6" fill="#f8f6ff" stroke="#6c5ce7" stroke-width="1.5"/>
+    <text x="50" y="55" font-size="10" fill="#6c5ce7" font-weight="bold">Context (all previous tokens):</text>
+    <text x="50" y="75" font-size="11" fill="#333">"The detective examined the evidence and concluded that the murderer is"</text>
+    <!-- Arrow -->
+    <path d="M 560 60 L 610 60" stroke="#6c5ce7" stroke-width="2" marker-end="url(#a1)"/>
+    <defs><marker id="a1" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6c5ce7"/></marker></defs>
+    <!-- Probability output -->
+    <rect x="620" y="20" width="260" height="120" rx="6" fill="#e8f8f5" stroke="#00b894" stroke-width="1.5"/>
+    <text x="750" y="42" text-anchor="middle" font-size="10" fill="#00b894" font-weight="bold">P(next token | context)</text>
+    <rect x="640" y="52" width="150" height="14" rx="3" fill="#00b894" opacity="0.8"/><text x="800" y="63" font-size="9" fill="#333">"Colonel" — 34%</text>
+    <rect x="640" y="70" width="85" height="14" rx="3" fill="#00b894" opacity="0.5"/><text x="800" y="81" font-size="9" fill="#333">"the" — 18%</text>
+    <rect x="640" y="88" width="55" height="14" rx="3" fill="#00b894" opacity="0.35"/><text x="800" y="99" font-size="9" fill="#333">"Professor" — 12%</text>
+    <rect x="640" y="106" width="30" height="14" rx="3" fill="#00b894" opacity="0.2"/><text x="800" y="117" font-size="9" fill="#666">... 50K others</text>
+    <!-- Key insight below -->
+    <rect x="30" y="120" width="550" height="55" rx="6" fill="#fff9e6" stroke="#f39c12" stroke-width="1"/>
+    <text x="305" y="142" text-anchor="middle" font-size="10" fill="#f39c12" font-weight="bold">🔍 The architecture's job:</text>
+    <text x="305" y="160" text-anchor="middle" font-size="10" fill="#333">Figure out which parts of the context are most relevant to this prediction.</text>
+    <text x="305" y="172" text-anchor="middle" font-size="9" fill="#666">Not all tokens matter equally — "evidence" and "concluded" matter more than "the".</text>
+    <!-- Training objective -->
+    <rect x="100" y="200" width="700" height="35" rx="6" fill="#f0f4f8"/>
+    <text x="450" y="218" text-anchor="middle" font-size="10" fill="#333"><tspan font-weight="bold">Training objective:</tspan> L = −∑ log P(xᵢ | x₁,...,xᵢ₋₁ ; θ)  — minimize cross-entropy over trillions of tokens</text>
+    <text x="450" y="232" text-anchor="middle" font-size="9" fill="#666">Every capability (reasoning, coding, translation, creativity) emerges from optimizing this single objective.</text>
+  </svg>
+  <p class="citation">Radford et al., 2018 (GPT-1) · Brown et al., 2020 (GPT-3) · This is the foundation ALL modern LLMs share</p>
+</section>
+
+<!-- ============ HOW TO PREDICT WELL — THE PIPELINE ============ -->
+<section>
+  <h2>To Predict Well, You Need Three Things</h2>
+  <p style="font-size:0.7em;">The Transformer solves next-token prediction through a pipeline of three learned operations:</p>
+  <svg viewBox="0 0 900 220" style="width:90%; margin-top:0.5em;">
+    <!-- Step 1: Represent -->
+    <rect x="30" y="40" width="240" height="130" rx="10" fill="#f8f6ff" stroke="#6c5ce7" stroke-width="2"/>
+    <text x="150" y="70" text-anchor="middle" font-size="13" fill="#6c5ce7" font-weight="bold">1. Represent</text>
+    <text x="150" y="92" text-anchor="middle" font-size="10" fill="#333">Convert words to vectors</text>
+    <text x="150" y="108" text-anchor="middle" font-size="10" fill="#333">where meaning = geometry</text>
+    <text x="150" y="130" text-anchor="middle" font-size="9" fill="#666">"cat" → [0.2, −0.8, 1.1, ...]</text>
+    <text x="150" y="150" text-anchor="middle" font-size="9" fill="#999">Embeddings</text>
+    <!-- Arrow -->
+    <path d="M 280 105 L 320 105" stroke="#999" stroke-width="2" marker-end="url(#a2)"/>
+    <!-- Step 2: Contextualize -->
+    <rect x="330" y="40" width="240" height="130" rx="10" fill="#fff9e6" stroke="#f39c12" stroke-width="2"/>
+    <text x="450" y="70" text-anchor="middle" font-size="13" fill="#f39c12" font-weight="bold">2. Contextualize</text>
+    <text x="450" y="92" text-anchor="middle" font-size="10" fill="#333">Each token looks at all others</text>
+    <text x="450" y="108" text-anchor="middle" font-size="10" fill="#333">to understand context</text>
+    <text x="450" y="130" text-anchor="middle" font-size="9" fill="#666">"bank" in "river bank" ≠ "bank account"</text>
+    <text x="450" y="150" text-anchor="middle" font-size="9" fill="#999">Attention mechanism</text>
+    <!-- Arrow -->
+    <path d="M 580 105 L 620 105" stroke="#999" stroke-width="2" marker-end="url(#a2)"/>
+    <!-- Step 3: Transform -->
+    <rect x="630" y="40" width="240" height="130" rx="10" fill="#e8f8f5" stroke="#00b894" stroke-width="2"/>
+    <text x="750" y="70" text-anchor="middle" font-size="13" fill="#00b894" font-weight="bold">3. Transform</text>
+    <text x="750" y="92" text-anchor="middle" font-size="10" fill="#333">Apply stored knowledge</text>
+    <text x="750" y="108" text-anchor="middle" font-size="10" fill="#333">and learned patterns</text>
+    <text x="750" y="130" text-anchor="middle" font-size="9" fill="#666">"Eiffel Tower" + "located" → "Paris"</text>
+    <text x="750" y="150" text-anchor="middle" font-size="9" fill="#999">MLP / Feed-Forward layers</text>
+    <defs><marker id="a2" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#999"/></marker></defs>
+    <!-- Bottom -->
+    <text x="450" y="200" text-anchor="middle" font-size="11" fill="#333">Repeat steps 2+3 for <tspan font-weight="bold">32–128 layers</tspan> → progressively richer representation → final prediction</text>
+  </svg>
+  <p class="citation">Vaswani et al., 2017, "Attention Is All You Need," arXiv:1706.03762 — introduced all three components in one architecture</p>
+</section>
+
+
+<!-- ============ EMBEDDINGS — HIGH DIMENSIONAL SPACE ============ -->
+<section>
+  <h2>Step 1: Embeddings — Words Become Vectors</h2>
+  <p style="font-size:0.68em;">Each token is mapped to a point in a <strong>high-dimensional vector space</strong> (4,096–12,288 dimensions). We can only visualize 2–3, but the principle holds: <strong>geometry encodes meaning</strong>.</p>
+  <svg viewBox="0 0 900 280" style="width:90%;">
+    <!-- 3D-ish axes -->
+    <line x1="60" y1="230" x2="60" y2="40" stroke="#ddd" stroke-width="1.5"/>
+    <line x1="60" y1="230" x2="320" y2="230" stroke="#ddd" stroke-width="1.5"/>
+    <line x1="60" y1="230" x2="20" y2="260" stroke="#ddd" stroke-width="1"/>
+    <!-- Animal cluster -->
+    <circle cx="120" cy="170" r="4" fill="#e74c3c"/><text x="130" y="168" font-size="9" fill="#e74c3c">cat</text>
+    <circle cx="145" cy="185" r="4" fill="#e74c3c"/><text x="155" y="183" font-size="9" fill="#e74c3c">dog</text>
+    <circle cx="110" cy="190" r="4" fill="#e74c3c"/><text x="85" y="192" font-size="9" fill="#e74c3c">tiger</text>
+    <circle cx="135" cy="160" r="4" fill="#e74c3c"/><text x="145" y="158" font-size="9" fill="#e74c3c">lion</text>
+    <ellipse cx="128" cy="177" rx="42" ry="28" fill="none" stroke="#e74c3c" stroke-width="1" stroke-dasharray="3" opacity="0.6"/>
+    <!-- Country cluster -->
+    <circle cx="240" cy="80" r="4" fill="#2980b9"/><text x="250" y="78" font-size="9" fill="#2980b9">France</text>
+    <circle cx="260" cy="100" r="4" fill="#2980b9"/><text x="270" y="98" font-size="9" fill="#2980b9">Italy</text>
+    <circle cx="225" cy="95" r="4" fill="#2980b9"/><text x="195" y="95" font-size="9" fill="#2980b9">Japan</text>
+    <circle cx="250" cy="70" r="4" fill="#2980b9"/><text x="260" y="68" font-size="9" fill="#2980b9">Germany</text>
+    <ellipse cx="244" cy="87" rx="38" ry="28" fill="none" stroke="#2980b9" stroke-width="1" stroke-dasharray="3" opacity="0.6"/>
+    <!-- Emotion cluster -->
+    <circle cx="180" cy="130" r="4" fill="#00b894"/><text x="190" y="128" font-size="9" fill="#00b894">happy</text>
+    <circle cx="195" cy="145" r="4" fill="#00b894"/><text x="205" y="143" font-size="9" fill="#00b894">joyful</text>
+    <circle cx="168" cy="140" r="4" fill="#00b894"/><text x="140" y="142" font-size="9" fill="#00b894">elated</text>
+    <ellipse cx="181" cy="138" rx="32" ry="18" fill="none" stroke="#00b894" stroke-width="1" stroke-dasharray="3" opacity="0.6"/>
+    <!-- Right side: parallelogram -->
+    <circle cx="480" cy="60" r="6" fill="#6c5ce7"/><text x="500" y="58" font-size="11" fill="#6c5ce7" font-weight="bold">King</text>
+    <circle cx="480" cy="170" r="6" fill="#6c5ce7"/><text x="500" y="168" font-size="11" fill="#6c5ce7" font-weight="bold">Man</text>
+    <circle cx="680" cy="60" r="6" fill="#e84393"/><text x="700" y="58" font-size="11" fill="#e84393" font-weight="bold">Queen</text>
+    <circle cx="680" cy="170" r="6" fill="#e84393"/><text x="700" y="168" font-size="11" fill="#e84393" font-weight="bold">Woman</text>
+    <!-- Direction arrows -->
+    <path d="M 486 67 L 486 163" stroke="#00b894" stroke-width="2.5" marker-end="url(#eg)"/><text x="440" y="120" font-size="9" fill="#00b894" font-weight="bold">− gender</text>
+    <path d="M 686 67 L 686 163" stroke="#00b894" stroke-width="2.5" marker-end="url(#eg)"/>
+    <path d="M 490 57 L 673 57" stroke="#f39c12" stroke-width="2.5" marker-end="url(#eo)"/><text x="580" y="48" font-size="9" fill="#f39c12" font-weight="bold">+ royalty</text>
+    <path d="M 490 173 L 673 173" stroke="#f39c12" stroke-width="2.5" marker-end="url(#eo)"/>
+    <!-- Dashed diagonal -->
+    <path d="M 487 170 L 675 60" stroke="#6c5ce7" stroke-width="1.5" stroke-dasharray="5" opacity="0.5"/>
+    <defs>
+      <marker id="eg" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#00b894"/></marker>
+      <marker id="eo" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#f39c12"/></marker>
+    </defs>
+    <!-- Formula -->
+    <rect x="440" y="200" width="380" height="35" rx="6" fill="#f0f4f8" stroke="#6c5ce7" stroke-width="1"/>
+    <text x="630" y="222" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">King − Man + Woman ≈ Queen</text>
+    <!-- Key text -->
+    <text x="630" y="260" text-anchor="middle" font-size="10" fill="#666">The same direction (gender, tense, capital) works consistently across word pairs</text>
+  </svg>
+  <p class="citation">Mikolov et al., 2013, "Efficient Estimation of Word Representations in Vector Space," arXiv:1301.3781 · Pennington et al., 2014, "GloVe" · Visual inspired by 3Blue1Brown (2024)</p>
+</section>
+
+<!-- ============ DIRECTION ENCODING ============ -->
+<section>
+  <h2>Directions in Embedding Space Encode Relationships</h2>
+  <p style="font-size:0.68em;">Not random — <strong>consistent vector offsets</strong> capture semantic and syntactic relationships:</p>
+  <svg viewBox="0 0 900 220" style="width:88%;">
+    <!-- Row 1: Gender -->
+    <rect x="20" y="15" width="860" height="55" rx="6" fill="#e8f8f5" opacity="0.3"/>
+    <text x="40" y="38" font-size="10" fill="#00b894" font-weight="bold">Gender:</text>
+    <circle cx="170" cy="40" r="5" fill="#6c5ce7"/><text x="185" y="44" font-size="10">king</text>
+    <path d="M 215 40 L 285 40" stroke="#00b894" stroke-width="2" marker-end="url(#d1)"/>
+    <circle cx="300" cy="40" r="5" fill="#e84393"/><text x="315" y="44" font-size="10">queen</text>
+    <text x="420" y="44" font-size="10" fill="#999">|</text>
+    <circle cx="470" cy="40" r="5" fill="#6c5ce7"/><text x="485" y="44" font-size="10">man</text>
+    <path d="M 515 40 L 585 40" stroke="#00b894" stroke-width="2" marker-end="url(#d1)"/>
+    <circle cx="600" cy="40" r="5" fill="#e84393"/><text x="615" y="44" font-size="10">woman</text>
+    <text x="700" y="44" font-size="10" fill="#999">|</text>
+    <circle cx="740" cy="40" r="5" fill="#6c5ce7"/><text x="755" y="44" font-size="10">uncle</text>
+    <path d="M 790" y1="40" x2="845" y2="40" stroke="#00b894" stroke-width="2" marker-end="url(#d1)"/>
+    <circle cx="860" cy="40" r="5" fill="#e84393"/><text x="860" y="60" font-size="9" fill="#e84393">aunt</text>
+    <!-- Row 2: Capital -->
+    <rect x="20" y="80" width="860" height="55" rx="6" fill="#fff9e6" opacity="0.3"/>
+    <text x="40" y="103" font-size="10" fill="#f39c12" font-weight="bold">Capital:</text>
+    <circle cx="170" cy="105" r="5" fill="#2980b9"/><text x="185" y="109" font-size="10">France</text>
+    <path d="M 230 105 L 285 105" stroke="#f39c12" stroke-width="2" marker-end="url(#d2)"/>
+    <circle cx="300" cy="105" r="5" fill="#e74c3c"/><text x="315" y="109" font-size="10">Paris</text>
+    <text x="420" y="109" font-size="10" fill="#999">|</text>
+    <circle cx="470" cy="105" r="5" fill="#2980b9"/><text x="485" y="109" font-size="10">Japan</text>
+    <path d="M 525 105 L 585 105" stroke="#f39c12" stroke-width="2" marker-end="url(#d2)"/>
+    <circle cx="600" cy="105" r="5" fill="#e74c3c"/><text x="615" y="109" font-size="10">Tokyo</text>
+    <text x="700" y="109" font-size="10" fill="#999">|</text>
+    <circle cx="740" cy="105" r="5" fill="#2980b9"/><text x="755" y="109" font-size="10">Egypt</text>
+    <path d="M 793 105 L 845 105" stroke="#f39c12" stroke-width="2" marker-end="url(#d2)"/>
+    <circle cx="860" cy="105" r="5" fill="#e74c3c"/><text x="860" y="125" font-size="9" fill="#e74c3c">Cairo</text>
+    <!-- Row 3: Tense -->
+    <rect x="20" y="145" width="860" height="55" rx="6" fill="#f8f6ff" opacity="0.3"/>
+    <text x="40" y="168" font-size="10" fill="#6c5ce7" font-weight="bold">Tense:</text>
+    <circle cx="170" cy="170" r="5" fill="#555"/><text x="185" y="174" font-size="10">walk</text>
+    <path d="M 215 170 L 285 170" stroke="#6c5ce7" stroke-width="2" marker-end="url(#d3)"/>
+    <circle cx="300" cy="170" r="5" fill="#555"/><text x="315" y="174" font-size="10">walked</text>
+    <text x="420" y="174" font-size="10" fill="#999">|</text>
+    <circle cx="470" cy="170" r="5" fill="#555"/><text x="485" y="174" font-size="10">swim</text>
+    <path d="M 520 170 L 585 170" stroke="#6c5ce7" stroke-width="2" marker-end="url(#d3)"/>
+    <circle cx="600" cy="170" r="5" fill="#555"/><text x="615" y="174" font-size="10">swam</text>
+    <text x="700" y="174" font-size="10" fill="#999">|</text>
+    <circle cx="740" cy="170" r="5" fill="#555"/><text x="755" y="174" font-size="10">go</text>
+    <path d="M 775 170 L 845 170" stroke="#6c5ce7" stroke-width="2" marker-end="url(#d3)"/>
+    <circle cx="860" cy="170" r="5" fill="#555"/><text x="860" y="190" font-size="9" fill="#555">went</text>
+    <defs>
+      <marker id="d1" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" fill="#00b894"/></marker>
+      <marker id="d2" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" fill="#f39c12"/></marker>
+      <marker id="d3" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" fill="#6c5ce7"/></marker>
+    </defs>
+  </svg>
+  <div class="highlight-box">
+    <strong>Key insight:</strong> These directions are not programmed — they <em>emerge</em> from training on text where these words appear in similar contexts. The model discovers the structure of language through statistics alone.
+  </div>
+  <p class="citation">Mikolov et al., 2013 · Pennington et al., 2014, "GloVe: Global Vectors for Word Representation" · Modern LLMs use contextual embeddings (vector changes with context)</p>
+</section>
+
+
+<!-- ============ CONTEXTUAL EMBEDDINGS — WHY ATTENTION ============ -->
+<section>
+  <h2>Static vs. Contextual Embeddings</h2>
+  <p style="font-size:0.7em;">Word2Vec gives ONE vector per word. But words change meaning in context.</p>
+  <div class="two-col" style="margin-top:0.5em;">
+    <div>
+      <h3 style="color:var(--red);">Problem: "bank"</h3>
+      <p>"I sat by the river <strong>bank</strong>" → terrain</p>
+      <p>"I went to the <strong>bank</strong> to deposit money" → financial</p>
+      <p style="font-size:0.85em; margin-top:0.5em;">Same word, same static vector — <strong>wrong</strong>.</p>
+    </div>
+    <div>
+      <h3 style="color:var(--green);">Solution: Contextual embeddings</h3>
+      <p>The vector for "bank" <strong>changes</strong> depending on surrounding words.</p>
+      <p style="font-size:0.85em; margin-top:0.5em;">How? <strong>Attention</strong> — let each word look at all other words to refine its representation.</p>
+    </div>
+  </div>
+  <div class="warn-box" style="margin-top:0.8em;">
+    <strong>This is why Transformers replaced everything:</strong> The attention mechanism gives every token a <em>contextualized</em> embedding that adapts to its surroundings. ELMo (2018) did this with LSTMs; Transformers (2017) did it better, faster, and in parallel.
+  </div>
+  <table style="margin-top:0.5em;">
+    <tr><th>Method</th><th>Year</th><th>Context?</th><th>Speed</th><th>Models</th></tr>
+    <tr><td>Word2Vec/GloVe</td><td>2013-14</td><td>❌ Static</td><td>Fast</td><td>— (embeddings only)</td></tr>
+    <tr><td>ELMo (BiLSTM)</td><td>2018</td><td>✅ Contextual</td><td>Slow (sequential)</td><td>ELMo</td></tr>
+    <tr><td>Transformer Attention</td><td>2017+</td><td>✅ Contextual</td><td>Fast (parallel)</td><td>BERT, GPT, Llama, Claude</td></tr>
+  </table>
+  <p class="citation">Peters et al., 2018, "Deep Contextualized Word Representations" (ELMo) · Devlin et al., 2018, "BERT" · Vaswani et al., 2017</p>
+</section>
+
+<!-- ============ ATTENTION: Q, K, V ============ -->
+<section>
+  <h2>Step 2: Attention — The Q, K, V Mechanism</h2>
+  <p style="font-size:0.68em;">For each token, compute: "Which other tokens are <strong>relevant</strong> to me? How much should I listen to each?"</p>
+  <svg viewBox="0 0 900 180" style="width:88%; margin-top:0.3em;">
+    <!-- Q -->
+    <rect x="20" y="20" width="260" height="70" rx="8" fill="#e8f4fd" stroke="#2980b9" stroke-width="2"/>
+    <text x="150" y="45" text-anchor="middle" font-size="12" fill="#2980b9" font-weight="bold">Query (Q)</text>
+    <text x="150" y="65" text-anchor="middle" font-size="10" fill="#333">"What information am I looking for?"</text>
+    <text x="150" y="82" text-anchor="middle" font-size="9" fill="#666">Each token asks a question about what it needs</text>
+    <!-- K -->
+    <rect x="320" y="20" width="260" height="70" rx="8" fill="#fff9e6" stroke="#f39c12" stroke-width="2"/>
+    <text x="450" y="45" text-anchor="middle" font-size="12" fill="#f39c12" font-weight="bold">Key (K)</text>
+    <text x="450" y="65" text-anchor="middle" font-size="10" fill="#333">"What information do I contain?"</text>
+    <text x="450" y="82" text-anchor="middle" font-size="9" fill="#666">Each token advertises its content</text>
+    <!-- V -->
+    <rect x="620" y="20" width="260" height="70" rx="8" fill="#e8f8f5" stroke="#00b894" stroke-width="2"/>
+    <text x="750" y="45" text-anchor="middle" font-size="12" fill="#00b894" font-weight="bold">Value (V)</text>
+    <text x="750" y="65" text-anchor="middle" font-size="10" fill="#333">"Here's my actual information."</text>
+    <text x="750" y="82" text-anchor="middle" font-size="9" fill="#666">The content that gets transferred if selected</text>
+    <!-- Process flow -->
+    <rect x="100" y="110" width="700" height="50" rx="6" fill="#f0f4f8"/>
+    <text x="450" y="130" text-anchor="middle" font-size="10" fill="#333"><tspan font-weight="bold">Step 1:</tspan> Score = Q · K<tspan baseline-shift="super" font-size="8">T</tspan> (dot product: "how well does my question match your content?")</text>
+    <text x="450" y="145" text-anchor="middle" font-size="10" fill="#333"><tspan font-weight="bold">Step 2:</tspan> Weights = softmax(Score / √d) → probability distribution over all tokens</text>
+    <text x="450" y="160" text-anchor="middle" font-size="10" fill="#333"><tspan font-weight="bold">Step 3:</tspan> Output = Weights × V → weighted sum of values (relevant info extracted)</text>
+  </svg>
+  <div class="formula" style="margin-top:0.3em;">Attention(Q, K, V) = softmax(QK<sup>T</sup> / √d<sub>k</sub>) · V</div>
+  <p class="citation">Vaswani et al., 2017, arXiv:1706.03762 · Intuition credit: 3Blue1Brown, "Attention in transformers, step-by-step" (2024)</p>
+</section>
+
+
+<!-- ============ ATTENTION: WHY SCALING, MULTI-HEAD ============ -->
+<section>
+  <h2>Multi-Head Attention — Attending to Different Things</h2>
+  <p style="font-size:0.68em;">One attention operation captures ONE type of relationship. Real language needs many simultaneously.</p>
+  <div class="two-col">
+    <div>
+      <h3>Why multiple heads?</h3>
+      <p>In "The cat sat on the mat because <strong>it</strong> was tired":</p>
+      <ul>
+        <li><strong>Head A</strong> might learn: "it" → "cat" (coreference)</li>
+        <li><strong>Head B</strong> might learn: "tired" → "sat" (semantic cause)</li>
+        <li><strong>Head C</strong> might learn: "was" → "it" (syntax: subject-verb)</li>
+      </ul>
+      <p style="margin-top:0.5em;">These roles are <strong>not programmed</strong> — they emerge from training on billions of tokens.</p>
+    </div>
+    <div>
+      <h3>The mechanics</h3>
+      <ol>
+        <li><strong>Split</strong> the embedding into h heads (each sees d/h dimensions)</li>
+        <li><strong>Attend</strong> independently per head (parallel, cheap)</li>
+        <li><strong>Concatenate</strong> all head outputs</li>
+        <li><strong>Project</strong> back to full dimension</li>
+      </ol>
+      <table style="margin-top:0.5em;">
+        <tr><th>Model</th><th>Heads</th><th>d_model</th><th>d/head</th></tr>
+        <tr><td>Transformer (2017)</td><td>8</td><td>512</td><td>64</td></tr>
+        <tr><td>GPT-3 (2020)</td><td>96</td><td>12,288</td><td>128</td></tr>
+        <tr><td>Llama 3 405B</td><td>128</td><td>16,384</td><td>128</td></tr>
+      </table>
+    </div>
+  </div>
+  <p class="citation">Vaswani et al., 2017 · Clark et al., 2019, "What Does BERT Look At?" arXiv:1906.04341 · Voita et al., 2019, "Specialized Heads Do the Heavy Lifting," ACL</p>
+</section>
+
+<!-- ============ MLP LAYERS ============ -->
+<section>
+  <h2>Step 3: MLP Layers — The Knowledge Store</h2>
+  <p style="font-size:0.68em;">Attention routes information. MLPs <strong>store and retrieve knowledge</strong>.</p>
+  <div class="two-col">
+    <div>
+      <h3>What MLPs do</h3>
+      <div class="formula" style="font-size:0.85em;">MLP(x) = W₂ · σ(W₁x + b₁) + b₂</div>
+      <ul style="margin-top:0.5em;">
+        <li><strong>W₁</strong> (up-projection): pattern detector ("key")</li>
+        <li><strong>σ</strong> (activation): non-linearity (ReLU → GeLU → SwiGLU)</li>
+        <li><strong>W₂</strong> (down-projection): information to output ("value")</li>
+      </ul>
+      <p style="margin-top:0.5em; font-size:0.9em;"><strong>~66% of GPT-3's 175B parameters</strong> are in MLP layers.</p>
+    </div>
+    <div>
+      <h3>Research evidence</h3>
+      <ul>
+        <li><strong>Knowledge Neurons:</strong> Specific neurons encode specific facts ("Eiffel Tower → Paris")</li>
+        <li><strong>Key-Value Memory:</strong> Each MLP row acts as key (pattern) + value (output info)</li>
+        <li><strong>Editing facts:</strong> Modify MLP weights → model's factual outputs change</li>
       </ul>
       <div class="highlight-box" style="margin-top:0.5em;">
-        <strong>Attention</strong> = wiring/routing<br>
-        <strong>MLP</strong> = the actual content
+        <strong>Intuition:</strong><br>
+        Attention = telephone switchboard (who connects to whom)<br>
+        MLP = the actual conversations (content being exchanged)
       </div>
     </div>
   </div>
-  <p class="citation">Dai et al., 2022, "Knowledge Neurons," ACL, arXiv:2104.08696 · Geva et al., 2021, "FFN as Key-Value Memories," EMNLP, arXiv:2012.14913</p>
+  <p class="citation">Geva et al., 2021, "Transformer FFN Layers Are Key-Value Memories," EMNLP, arXiv:2012.14913 · Dai et al., 2022, "Knowledge Neurons," ACL, arXiv:2104.08696 · Meng et al., 2022, "ROME"</p>
 </section>
 
-<!-- ============ SLIDE: Full Architecture ============ -->
+<!-- ============ FULL ARCHITECTURE ============ -->
 <section>
-  <h2>The Full Picture — One Transformer Block</h2>
-  <svg viewBox="0 0 900 260" style="width:88%;">
-    <!-- Block flow -->
-    <rect x="30" y="100" width="90" height="50" rx="6" fill="#f0f4f8" stroke="#999"/>
-    <text x="75" y="130" text-anchor="middle" font-size="10" fill="#333" font-weight="bold">Input</text>
-    <path d="M 125 125 L 160 125" stroke="#999" stroke-width="1.5" marker-end="url(#farr)"/>
-    
-    <rect x="165" y="100" width="100" height="50" rx="6" fill="#fff3e0" stroke="#f39c12"/>
-    <text x="215" y="122" text-anchor="middle" font-size="9" fill="#f39c12" font-weight="bold">Layer Norm</text>
-    <text x="215" y="138" text-anchor="middle" font-size="8" fill="#666">stabilize</text>
-    <path d="M 270 125 L 295 125" stroke="#999" stroke-width="1.5" marker-end="url(#farr)"/>
-    
-    <rect x="300" y="90" width="130" height="70" rx="8" fill="#e8f4fd" stroke="#2980b9" stroke-width="2"/>
-    <text x="365" y="118" text-anchor="middle" font-size="11" fill="#2980b9" font-weight="bold">Multi-Head</text>
-    <text x="365" y="135" text-anchor="middle" font-size="11" fill="#2980b9" font-weight="bold">Attention</text>
-    <text x="365" y="152" text-anchor="middle" font-size="8" fill="#666">contextualize</text>
-    <path d="M 435 125 L 465 125" stroke="#999" stroke-width="1.5" marker-end="url(#farr)"/>
-    
-    <circle cx="480" cy="125" r="12" fill="#ffeaa7" stroke="#f39c12"/><text x="480" y="130" text-anchor="middle" font-size="12" fill="#333">+</text>
-    <text x="480" y="155" text-anchor="middle" font-size="8" fill="#999">residual</text>
-    <path d="M 495 125 L 520 125" stroke="#999" stroke-width="1.5" marker-end="url(#farr)"/>
-    
-    <rect x="525" y="100" width="100" height="50" rx="6" fill="#fff3e0" stroke="#f39c12"/>
-    <text x="575" y="122" text-anchor="middle" font-size="9" fill="#f39c12" font-weight="bold">Layer Norm</text>
-    <path d="M 630 125 L 655 125" stroke="#999" stroke-width="1.5" marker-end="url(#farr)"/>
-    
-    <rect x="660" y="90" width="100" height="70" rx="8" fill="#e8f8f5" stroke="#00b894" stroke-width="2"/>
-    <text x="710" y="118" text-anchor="middle" font-size="11" fill="#00b894" font-weight="bold">MLP</text>
-    <text x="710" y="138" text-anchor="middle" font-size="8" fill="#666">store/transform</text>
-    <path d="M 765 125 L 790 125" stroke="#999" stroke-width="1.5" marker-end="url(#farr)"/>
-    
-    <circle cx="805" cy="125" r="12" fill="#ffeaa7" stroke="#f39c12"/><text x="805" y="130" text-anchor="middle" font-size="12" fill="#333">+</text>
-    <path d="M 820 125 L 860 125" stroke="#999" stroke-width="1.5" marker-end="url(#farr)"/>
-    
-    <rect x="865" y="100" width="30" height="50" rx="6" fill="#f0f4f8" stroke="#999"/>
-    <text x="880" y="130" text-anchor="middle" font-size="9" fill="#333">→</text>
-    <defs><marker id="farr" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" fill="#999"/></marker></defs>
-    <!-- Repeat label -->
-    <text x="450" y="40" text-anchor="middle" font-size="13" fill="#6c5ce7" font-weight="bold">× 32–128 layers = a full LLM</text>
-    <!-- Model comparison -->
-    <text x="150" y="220" font-size="10" fill="#666">Original (2017): 6 layers, 65M params</text>
-    <text x="150" y="240" font-size="10" fill="#666">GPT-3 (2020): 96 layers, 175B params, ~$4.6M</text>
-    <text x="550" y="220" font-size="10" fill="#666">Llama 3 (2024): 126 layers, 405B params</text>
-    <text x="550" y="240" font-size="10" fill="#6c5ce7" font-weight="bold">Architecture barely changed — scale did.</text>
+  <h2>The Complete Transformer Block</h2>
+  <p style="font-size:0.68em;">One block = Attention + MLP + Residual connections + Layer Normalization. Stack 32–128 of these.</p>
+  <svg viewBox="0 0 900 200" style="width:90%;">
+    <rect x="20" y="75" width="70" height="40" rx="5" fill="#f0f4f8" stroke="#999"/><text x="55" y="100" text-anchor="middle" font-size="9" fill="#333">Input x</text>
+    <path d="M 95 95 L 120 95" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
+    <rect x="125" y="75" width="80" height="40" rx="5" fill="#fff3e0" stroke="#f39c12"/><text x="165" y="98" text-anchor="middle" font-size="8" fill="#f39c12">LayerNorm</text>
+    <path d="M 210 95 L 230 95" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
+    <rect x="235" y="65" width="120" height="60" rx="8" fill="#e8f4fd" stroke="#2980b9" stroke-width="2"/><text x="295" y="90" text-anchor="middle" font-size="9" fill="#2980b9" font-weight="bold">Multi-Head</text><text x="295" y="105" text-anchor="middle" font-size="9" fill="#2980b9" font-weight="bold">Attention</text><text x="295" y="118" text-anchor="middle" font-size="7" fill="#666">contextualize</text>
+    <path d="M 360 95 L 385 95" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
+    <circle cx="400" cy="95" r="11" fill="#ffeaa7" stroke="#f39c12"/><text x="400" y="100" text-anchor="middle" font-size="11">+</text>
+    <path d="M 415 95 L 440 95" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
+    <rect x="445" y="75" width="80" height="40" rx="5" fill="#fff3e0" stroke="#f39c12"/><text x="485" y="98" text-anchor="middle" font-size="8" fill="#f39c12">LayerNorm</text>
+    <path d="M 530 95 L 550 95" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
+    <rect x="555" y="65" width="100" height="60" rx="8" fill="#e8f8f5" stroke="#00b894" stroke-width="2"/><text x="605" y="92" text-anchor="middle" font-size="9" fill="#00b894" font-weight="bold">MLP</text><text x="605" y="108" text-anchor="middle" font-size="7" fill="#666">store/transform</text>
+    <path d="M 660 95 L 685 95" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
+    <circle cx="700" cy="95" r="11" fill="#ffeaa7" stroke="#f39c12"/><text x="700" y="100" text-anchor="middle" font-size="11">+</text>
+    <path d="M 715 95 L 750 95" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
+    <rect x="755" y="75" width="70" height="40" rx="5" fill="#6c5ce7" opacity="0.15" stroke="#6c5ce7"/><text x="790" y="100" text-anchor="middle" font-size="9" fill="#6c5ce7" font-weight="bold">Output</text>
+    <!-- Residual lines -->
+    <path d="M 55 120 L 55 145 L 400 145 L 400 110" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
+    <path d="M 400 110 L 400 145 L 700 145 L 700 110" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
+    <text x="225" y="155" font-size="7" fill="#999">residual connection</text>
+    <text x="545" y="155" font-size="7" fill="#999">residual connection</text>
+    <defs><marker id="fa" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto"><polygon points="0 0, 6 2, 0 4" fill="#999"/></marker></defs>
+    <!-- Labels -->
+    <text x="450" y="30" text-anchor="middle" font-size="13" fill="#6c5ce7" font-weight="bold">× 32–128 layers = a full LLM</text>
+    <text x="450" y="50" text-anchor="middle" font-size="10" fill="#666">Original: 6 layers, 65M params  ·  GPT-3: 96 layers, 175B  ·  Llama 3: 126 layers, 405B</text>
+    <!-- Bottom -->
+    <text x="450" y="185" text-anchor="middle" font-size="10" fill="#333">Architecture barely changed since 2017. Scale, data, and training methods drove all breakthroughs.</text>
   </svg>
-  <p class="citation">Vaswani et al., 2017, Figure 1 (adapted for decoder-only) · All modern LLMs use this decoder-only pattern</p>
+  <p class="citation">Vaswani et al., 2017 · All major LLMs (GPT-4, Claude, Gemini, Llama, Mistral) use this exact block structure with minor variations</p>
 </section>
 
 
-<!-- ============ SLIDE: Why Transformers Won ============ -->
+<!-- ============ WHY TRANSFORMERS WON ============ -->
 <section>
-  <h2>Why Transformers Won</h2>
+  <h2>Why Transformers Replaced Everything</h2>
   <div class="two-col">
     <div>
-      <h3 style="color:#27ae60;">✅ The Wins</h3>
+      <h3 style="color:var(--green);">The Wins (vs. RNNs/LSTMs)</h3>
+      <table>
+        <tr><th>Property</th><th>RNNs</th><th>Transformers</th></tr>
+        <tr><td>Training</td><td>Sequential</td><td><strong>Fully parallel</strong></td></tr>
+        <tr><td>Long-range deps</td><td>O(n) path</td><td><strong>O(1) path</strong></td></tr>
+        <tr><td>Gradient flow</td><td>Vanish/explode</td><td><strong>Stable (residuals)</strong></td></tr>
+        <tr><td>Training time</td><td>Weeks</td><td><strong>3.5 days</strong></td></tr>
+        <tr><td>BLEU EN→DE</td><td>~24</td><td><strong>28.4 (+18%)</strong></td></tr>
+      </table>
+    </div>
+    <div>
+      <h3 style="color:var(--red);">Known Limitations</h3>
       <ul>
-        <li><strong>Fully parallel</strong> — 100× faster training than RNNs</li>
-        <li><strong>O(1) path</strong> between any two positions</li>
-        <li><strong>BLEU 28.4</strong> EN→DE (new SOTA at fraction of cost)</li>
-        <li>Set the stage for <em>everything</em> after 2017</li>
+        <li><strong>O(n²) memory</strong> — 128K tokens = 16.4 billion attention entries per head per layer</li>
+        <li><strong>Autoregressive</strong> — generates left-to-right, no native backtracking or planning</li>
+        <li><strong>No world model</strong> — knowledge is implicit in weights, can't be verified</li>
+        <li><strong>Hallucination</strong> — confident about wrong facts (no self-checking mechanism)</li>
+      </ul>
+      <p style="font-size:0.85em; margin-top:0.5em;">These limitations drive active research: Mamba (O(n)), JEPA (world models), test-time compute (planning).</p>
+    </div>
+  </div>
+  <p class="citation">Vaswani et al., 2017 · Gu & Dao, 2023 (Mamba, arXiv:2312.00752) · LeCun, 2022 (JEPA) · OpenAI o1 (2024, test-time compute)</p>
+</section>
+
+<!-- ============ JEPA — THE FRONTIER ============ -->
+<section>
+  <h2>Beyond Token Prediction: JEPA</h2>
+  <p class="section-label">Joint Embedding Predictive Architecture (LeCun, 2022)</p>
+  <div class="two-col" style="margin-top:0.5em;">
+    <div>
+      <h3 style="color:var(--red);">Autoregressive LLMs</h3>
+      <p>Predict the <strong>next token</strong> in vocabulary space</p>
+      <p style="font-size:0.85em;"><em>"The cat sat on the ___"</em> → P(mat)=0.3...</p>
+      <ul style="font-size:0.85em;">
+        <li>Must predict exact surface form</li>
+        <li>Wastes capacity on irrelevant details</li>
+        <li>No explicit planning/reasoning</li>
       </ul>
     </div>
     <div>
-      <h3 style="color:#e74c3c;">⚠️ But Not the End</h3>
-      <ul>
-        <li><strong>O(n²) attention</strong> — 128K tokens = 16.4B entries</li>
-        <li><strong>Autoregressive</strong> ≠ planning or understanding</li>
-        <li><strong>No world model</strong> — can't verify its own claims</li>
-        <li>These motivate the <em>next frontier</em>...</li>
+      <h3 style="color:var(--green);">JEPA (LeCun's proposal)</h3>
+      <p>Predict <strong>representations</strong> in abstract latent space</p>
+      <p style="font-size:0.85em;"><em>[abstract features] → [abstract target]</em></p>
+      <ul style="font-size:0.85em;">
+        <li>Discards irrelevant surface details</li>
+        <li>Learns world models, not word sequences</li>
+        <li>Basis for planning and reasoning</li>
       </ul>
     </div>
   </div>
-  <div class="analogy" style="margin-top:0.8em;">
-    <strong>Swaroop Mishra's reasoning work (Step-Back, Self-Discover) provides workarounds</strong> for the planning limitation — 
-    but architecturally, the limitation remains. Can we build systems that <em>plan natively</em>?
+  <div class="highlight-box" style="margin-top:0.5em;">
+    <strong>Status (2024-2026):</strong> I-JEPA (images, Meta 2023) and V-JEPA (video, Meta 2024) show the concept works. Not yet proven at LLM-scale for language. This is a research frontier, not a deployed solution.
   </div>
-  <p class="citation">Vaswani et al., 2017 · Zheng, Mishra et al., 2023, "Step-Back Prompting," ICLR 2024 · Zhou, Mishra et al., 2024, "Self-Discover," Google DeepMind</p>
-</section>
-
-<!-- ============ SLIDE: JEPA ============ -->
-<section>
-  <h2>The Frontier — Beyond Token Prediction</h2>
-  <p class="section-title">JEPA · Joint Embedding Predictive Architecture</p>
-  <svg viewBox="0 0 900 200" style="width:88%; margin-top:0.3em;">
-    <!-- LLM side -->
-    <rect x="30" y="20" width="380" height="160" rx="10" fill="#ffeef0" stroke="#e74c3c" stroke-width="1.5"/>
-    <text x="220" y="45" text-anchor="middle" font-size="12" fill="#e74c3c" font-weight="bold">Autoregressive LLMs</text>
-    <text x="220" y="70" text-anchor="middle" font-size="10" fill="#555">Predict next TOKEN in vocabulary space</text>
-    <rect x="60" y="85" width="320" height="35" rx="5" fill="white" stroke="#e74c3c"/>
-    <text x="220" y="108" text-anchor="middle" font-size="10" fill="#333">"The cat sat on the" → P("mat")=0.3, P("chair")=0.2 ...</text>
-    <text x="220" y="145" text-anchor="middle" font-size="9" fill="#666">Must predict exact surface form</text>
-    <text x="220" y="165" text-anchor="middle" font-size="9" fill="#666">Wastes capacity on irrelevant details</text>
-    <!-- JEPA side -->
-    <rect x="470" y="20" width="400" height="160" rx="10" fill="#e8f8f5" stroke="#00b894" stroke-width="1.5"/>
-    <text x="670" y="45" text-anchor="middle" font-size="12" fill="#00b894" font-weight="bold">JEPA (LeCun, 2022)</text>
-    <text x="670" y="70" text-anchor="middle" font-size="10" fill="#555">Predict REPRESENTATIONS in latent space</text>
-    <rect x="500" y="85" width="340" height="35" rx="5" fill="white" stroke="#00b894"/>
-    <text x="670" y="108" text-anchor="middle" font-size="10" fill="#333">[abstract features] → [predicted abstract target]</text>
-    <text x="670" y="145" text-anchor="middle" font-size="9" fill="#666">Discards irrelevant details automatically</text>
-    <text x="670" y="165" text-anchor="middle" font-size="9" fill="#666">Learns world models, not word sequences</text>
-    <!-- VS -->
-    <text x="445" y="105" text-anchor="middle" font-size="14" fill="#999" font-weight="bold">vs</text>
-  </svg>
-  <ul style="font-size:0.65em; margin-top:0.3em;">
-    <li><strong>I-JEPA</strong> (Meta, 2023): Predicts masked image patches in representation space</li>
-    <li><strong>V-JEPA</strong> (Meta, 2024): Learns video dynamics without generating pixels</li>
-    <li>Not a replacement today — a <strong>research frontier</strong> addressing fundamental limitations</li>
-  </ul>
-  <p class="citation">LeCun, 2022, "A Path Towards Autonomous Machine Intelligence" · Assran et al., 2023, arXiv:2301.08243 · Meta AI V-JEPA, 2024</p>
+  <p class="citation">LeCun, 2022, "A Path Towards Autonomous Machine Intelligence" · Assran et al., 2023, arXiv:2301.08243 (I-JEPA) · Meta AI, V-JEPA, 2024</p>
 </section>
 
 <!-- ============ SECTION 1 RECAP ============ -->
 <section>
-  <h2>Section 1 — The Story So Far</h2>
-  <svg viewBox="0 0 900 200" style="width:90%;">
-    <!-- Flow chain -->
-    <rect x="20" y="70" width="110" height="55" rx="6" fill="#f8f6ff" stroke="#6c5ce7" stroke-width="1.5"/>
-    <text x="75" y="93" text-anchor="middle" font-size="9" fill="#6c5ce7" font-weight="bold">Words</text>
-    <text x="75" y="110" text-anchor="middle" font-size="8" fill="#666">symbols</text>
-    <path d="M 135 97 L 165 97" stroke="#6c5ce7" stroke-width="2" marker-end="url(#rarr)"/>
-    
-    <rect x="170" y="70" width="110" height="55" rx="6" fill="#e8f4fd" stroke="#2980b9" stroke-width="1.5"/>
-    <text x="225" y="93" text-anchor="middle" font-size="9" fill="#2980b9" font-weight="bold">Embeddings</text>
-    <text x="225" y="110" text-anchor="middle" font-size="8" fill="#666">vectors in space</text>
-    <path d="M 285 97 L 315 97" stroke="#2980b9" stroke-width="2" marker-end="url(#rarr)"/>
-    
-    <rect x="320" y="70" width="110" height="55" rx="6" fill="#fff9e6" stroke="#f39c12" stroke-width="1.5"/>
-    <text x="375" y="93" text-anchor="middle" font-size="9" fill="#f39c12" font-weight="bold">Attention</text>
-    <text x="375" y="110" text-anchor="middle" font-size="8" fill="#666">find relevant context</text>
-    <path d="M 435 97 L 465 97" stroke="#f39c12" stroke-width="2" marker-end="url(#rarr)"/>
-    
-    <rect x="470" y="70" width="110" height="55" rx="6" fill="#e8f8f5" stroke="#00b894" stroke-width="1.5"/>
-    <text x="525" y="93" text-anchor="middle" font-size="9" fill="#00b894" font-weight="bold">MLP</text>
-    <text x="525" y="110" text-anchor="middle" font-size="8" fill="#666">apply knowledge</text>
-    <path d="M 585 97 L 615 97" stroke="#00b894" stroke-width="2" marker-end="url(#rarr)"/>
-    
-    <rect x="620" y="70" width="110" height="55" rx="6" fill="#ffeef0" stroke="#e74c3c" stroke-width="1.5"/>
-    <text x="675" y="93" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="bold">× N layers</text>
-    <text x="675" y="110" text-anchor="middle" font-size="8" fill="#666">stack deep</text>
-    <path d="M 735 97 L 765 97" stroke="#e74c3c" stroke-width="2" marker-end="url(#rarr)"/>
-    
-    <rect x="770" y="70" width="110" height="55" rx="6" fill="#6c5ce7" stroke="#6c5ce7" stroke-width="1.5"/>
-    <text x="825" y="93" text-anchor="middle" font-size="9" fill="white" font-weight="bold">Prediction</text>
-    <text x="825" y="110" text-anchor="middle" font-size="8" fill="#e0d6ff">next token</text>
-    <defs><marker id="rarr" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" fill="currentColor"/></marker></defs>
-    <!-- Bottom text -->
-    <text x="450" y="165" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">This is the entire architecture. Everything else is scale.</text>
-    <text x="450" y="185" text-anchor="middle" font-size="11" fill="#6c5ce7">Next: How did we get from 117M to 175B parameters?</text>
+  <h2>Section 1 — Summary</h2>
+  <svg viewBox="0 0 900 120" style="width:92%;">
+    <rect x="10" y="30" width="100" height="55" rx="5" fill="#f8f6ff" stroke="#6c5ce7" stroke-width="1.5"/>
+    <text x="60" y="52" text-anchor="middle" font-size="8" fill="#6c5ce7" font-weight="bold">Tokens</text>
+    <text x="60" y="68" text-anchor="middle" font-size="7" fill="#666">words/subwords</text>
+    <path d="M 115 57 L 140 57" stroke="#6c5ce7" stroke-width="1.5" marker-end="url(#ra)"/>
+    <rect x="145" y="30" width="110" height="55" rx="5" fill="#e8f4fd" stroke="#2980b9" stroke-width="1.5"/>
+    <text x="200" y="52" text-anchor="middle" font-size="8" fill="#2980b9" font-weight="bold">Embeddings</text>
+    <text x="200" y="68" text-anchor="middle" font-size="7" fill="#666">vectors in space</text>
+    <path d="M 260 57 L 285 57" stroke="#2980b9" stroke-width="1.5" marker-end="url(#ra)"/>
+    <rect x="290" y="30" width="110" height="55" rx="5" fill="#fff9e6" stroke="#f39c12" stroke-width="1.5"/>
+    <text x="345" y="52" text-anchor="middle" font-size="8" fill="#f39c12" font-weight="bold">Attention</text>
+    <text x="345" y="68" text-anchor="middle" font-size="7" fill="#666">contextualize</text>
+    <path d="M 405 57 L 430 57" stroke="#f39c12" stroke-width="1.5" marker-end="url(#ra)"/>
+    <rect x="435" y="30" width="100" height="55" rx="5" fill="#e8f8f5" stroke="#00b894" stroke-width="1.5"/>
+    <text x="485" y="52" text-anchor="middle" font-size="8" fill="#00b894" font-weight="bold">MLP</text>
+    <text x="485" y="68" text-anchor="middle" font-size="7" fill="#666">apply knowledge</text>
+    <path d="M 540 57 L 565 57" stroke="#00b894" stroke-width="1.5" marker-end="url(#ra)"/>
+    <rect x="570" y="30" width="110" height="55" rx="5" fill="#ffeef0" stroke="#e74c3c" stroke-width="1.5"/>
+    <text x="625" y="52" text-anchor="middle" font-size="8" fill="#e74c3c" font-weight="bold">× N layers</text>
+    <text x="625" y="68" text-anchor="middle" font-size="7" fill="#666">stack deep</text>
+    <path d="M 685 57 L 710 57" stroke="#e74c3c" stroke-width="1.5" marker-end="url(#ra)"/>
+    <rect x="715" y="30" width="110" height="55" rx="5" fill="#6c5ce7" stroke="#6c5ce7"/><text x="770" y="52" text-anchor="middle" font-size="8" fill="white" font-weight="bold">Prediction</text><text x="770" y="68" text-anchor="middle" font-size="7" fill="#d5d0f5">next token prob.</text>
+    <defs><marker id="ra" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto"><polygon points="0 0, 6 2, 0 4" fill="currentColor"/></marker></defs>
+    <text x="450" y="110" text-anchor="middle" font-size="11" fill="#333">One architecture (2017). Everything since = scale + data + training tricks.</text>
   </svg>
+  <div style="margin-top:0.5em; font-size:0.65em; text-align:left; max-width:800px; margin-left:auto; margin-right:auto;">
+    <strong>Key papers:</strong> Vaswani et al. 2017 (Transformer) · Mikolov et al. 2013 (Word2Vec) · Devlin et al. 2018 (BERT) · Radford et al. 2018 (GPT) · Peters et al. 2018 (ELMo) · Geva et al. 2021 (FFN as memory) · Dai et al. 2022 (Knowledge Neurons) · LeCun 2022 (JEPA) · Gu & Dao 2023 (Mamba)
+  </div>
+  <p style="margin-top:0.8em; font-size:0.75em; color:var(--accent);"><strong>Next section:</strong> How did we get from 117M to 1.8 trillion parameters? The Scaling Story.</p>
 </section>
 
 </div><!-- end .slides -->
 </div><!-- end .reveal -->
-
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
 <script>
   Reveal.initialize({
@@ -566,7 +603,7 @@
     center: true,
     width: 1200,
     height: 700,
-    margin: 0.08
+    margin: 0.07
   });
 </script>
 </body>
