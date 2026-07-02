@@ -74,7 +74,17 @@
 <!-- AGENDA -->
 <section>
   <h2>Talk Structure</h2>
-  <p style="font-size:0.9em; color:#999;">&lt;to be added later once done with all slides&gt;</p>
+  <table style="margin-top:0.4em;">
+    <tr><th>#</th><th>Section</th><th>Core Question</th><th>~Time</th></tr>
+    <tr><td style="color:var(--accent); font-weight:bold;">1</td><td>Foundations</td><td>What's actually inside an LLM?</td><td>20 min</td></tr>
+    <tr><td style="color:var(--accent2); font-weight:bold;">2</td><td>Scaling</td><td>How did 117M become 1.8T parameters?</td><td>12 min</td></tr>
+    <tr><td style="color:var(--green); font-weight:bold;">3</td><td>Alignment</td><td>How do we make models follow human intent?</td><td>12 min</td></tr>
+    <tr><td style="color:var(--orange); font-weight:bold;">4</td><td>Fine-Tuning &amp; LoRA</td><td>How do we customize models affordably?</td><td>15 min</td></tr>
+    <tr><td style="color:var(--pink); font-weight:bold;">5</td><td>APIs, RAG &amp; Agents</td><td>How do we build real applications?</td><td>12 min</td></tr>
+    <tr><td style="color:var(--red); font-weight:bold;">6</td><td>Hype vs. Reality</td><td>What's proven vs. what's marketing?</td><td>8 min</td></tr>
+    <tr><td style="font-weight:bold;">7</td><td>Call to Action</td><td>How do YOU innovate with this?</td><td>5 min</td></tr>
+  </table>
+  <p style="font-size:0.6em; color:#666; margin-top:0.6em;">Every claim backed by original papers. Goal: you leave knowing <strong>why</strong> things work, not just what they do.</p>
 </section>
 
 <!-- SECTION 1 HEADER -->
@@ -1182,6 +1192,559 @@ is Paris."</code></pre>
   </p>
   <p style="margin-top:0.3em; font-size:0.7em; color:var(--accent);"><strong>Next:</strong> How do we customize these aligned models for specific tasks? Fine-tuning &amp; LoRA.</p>
 </section>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: FINE-TUNING — MAKING MODELS YOUR OWN             -->
+<!-- ============================================================ -->
+
+<!-- SECTION 4 HEADER -->
+<section>
+  <p class="section-label">Section 4</p>
+  <h1>Fine-Tuning</h1>
+  <h2 style="color:var(--accent);">Making Models Your Own</h2>
+  <p style="font-size:0.65em; color:#666; margin-top:0.8em;">Pre-trained models know language. Fine-tuning teaches them YOUR task, domain, and style. But how do you do it without breaking the bank?</p>
+</section>
+
+<!-- WHY FINE-TUNE -->
+<section>
+  <h2>Why Fine-Tune?</h2>
+  <p style="font-size:0.68em;">A pre-trained model is a generalist. Fine-tuning turns it into a <strong>specialist</strong>.</p>
+  <svg viewBox="0 0 900 150" style="width:92%; margin-top:0.4em;">
+    <!-- Spectrum bar -->
+    <rect x="30" y="20" width="840" height="12" rx="6" fill="none" stroke="#ddd" stroke-width="1"/>
+    <rect x="30" y="20" width="168" height="12" rx="6" fill="#e74c3c" opacity="0.8"/>
+    <rect x="198" y="20" width="168" height="12" rx="0" fill="#f39c12" opacity="0.7"/>
+    <rect x="366" y="20" width="168" height="12" rx="0" fill="#00b894" opacity="0.7"/>
+    <rect x="534" y="20" width="168" height="12" rx="0" fill="#2980b9" opacity="0.6"/>
+    <rect x="702" y="20" width="168" height="12" rx="6" fill="#6c5ce7" opacity="0.5"/>
+    <text x="114" y="50" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="bold">Full Fine-Tuning</text>
+    <text x="114" y="62" text-anchor="middle" font-size="7" fill="#666">100% params</text>
+    <text x="282" y="50" text-anchor="middle" font-size="9" fill="#f39c12" font-weight="bold">LoRA</text>
+    <text x="282" y="62" text-anchor="middle" font-size="7" fill="#666">0.01-0.1% params</text>
+    <text x="450" y="50" text-anchor="middle" font-size="9" fill="#00b894" font-weight="bold">QLoRA</text>
+    <text x="450" y="62" text-anchor="middle" font-size="7" fill="#666">4-bit base + LoRA</text>
+    <text x="618" y="50" text-anchor="middle" font-size="9" fill="#2980b9" font-weight="bold">Prefix Tuning</text>
+    <text x="618" y="62" text-anchor="middle" font-size="7" fill="#666">0.001% params</text>
+    <text x="786" y="50" text-anchor="middle" font-size="9" fill="#6c5ce7" font-weight="bold">Prompting</text>
+    <text x="786" y="62" text-anchor="middle" font-size="7" fill="#666">0% params</text>
+    <text x="114" y="75" text-anchor="middle" font-size="7" fill="#999">Max control</text>
+    <text x="786" y="75" text-anchor="middle" font-size="7" fill="#999">Min cost</text>
+    <!-- Arrow -->
+    <path d="M 60 85 L 840 85" stroke="#999" stroke-width="1" marker-end="url(#ft1)"/>
+    <text x="450" y="100" text-anchor="middle" font-size="8" fill="#999">More parameters modified ←→ Fewer parameters modified</text>
+    <defs><marker id="ft1" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" fill="#999"/></marker></defs>
+  </svg>
+  <table style="margin-top:0.3em;">
+    <tr><th>What You Want</th><th>Fine-Tuning Teaches</th><th>Example</th></tr>
+    <tr><td>New format</td><td>Output structure</td><td>Always respond in JSON</td></tr>
+    <tr><td>Domain knowledge</td><td>Specialized vocabulary</td><td>Medical terminology</td></tr>
+    <tr><td>Style/tone</td><td>Generation distribution</td><td>Concise, formal, technical</td></tr>
+    <tr><td>New capability</td><td>Task patterns</td><td>Code review, SQL generation</td></tr>
+  </table>
+  <div class="analogy">
+    <strong>Key insight (Mishra et al., 2023):</strong> WHAT you fine-tune on matters more than HOW you fine-tune. 1 well-written instruction = ~200 training examples. Optimize data first, method second.
+  </div>
+  <p class="citation">Mishra et al., 2023, arXiv:2306.05539 | Gupta, Mishra et al., 2023, "TarGEN," arXiv:2310.17876</p>
+</section>
+
+<!-- THE PROBLEM WITH FULL FINE-TUNING -->
+<section>
+  <h2>The Problem with Full Fine-Tuning</h2>
+  <p style="font-size:0.68em;">Updating ALL parameters is prohibitively expensive for modern LLMs.</p>
+  <svg viewBox="0 0 900 200" style="width:90%; margin-top:0.3em;">
+    <!-- Memory breakdown stacked bar -->
+    <text x="200" y="20" text-anchor="middle" font-size="10" fill="#333" font-weight="bold">GPT-3 (175B) Training Memory</text>
+    <rect x="50" y="30" width="300" height="30" rx="4" fill="#2980b9"/>
+    <text x="200" y="50" text-anchor="middle" font-size="9" fill="white">Weights: 350 GB (FP16)</text>
+    <rect x="50" y="62" width="300" height="30" rx="4" fill="#6c5ce7"/>
+    <text x="200" y="82" text-anchor="middle" font-size="9" fill="white">Gradients: 350 GB</text>
+    <rect x="50" y="94" width="300" height="55" rx="4" fill="#e74c3c"/>
+    <text x="200" y="120" text-anchor="middle" font-size="9" fill="white">Optimizer (Adam): 1,400 GB</text>
+    <text x="200" y="138" text-anchor="middle" font-size="8" fill="#ffeef0">= 66% of total memory</text>
+    <text x="200" y="165" text-anchor="middle" font-size="11" fill="#e74c3c" font-weight="bold">Total: ~2.1 TB</text>
+    <text x="200" y="182" text-anchor="middle" font-size="9" fill="#666">= 26× A100 GPUs (80GB each)</text>
+    <!-- Right side: the deployment problem -->
+    <rect x="450" y="25" width="420" height="165" rx="8" fill="#f0f4f8" stroke="#ddd"/>
+    <text x="660" y="48" text-anchor="middle" font-size="10" fill="#e74c3c" font-weight="bold">The Deployment Problem</text>
+    <text x="480" y="72" font-size="9" fill="#333">Each fine-tuned variant = full model copy</text>
+    <rect x="480" y="82" width="55" height="18" rx="3" fill="#2980b9"/><text x="545" y="95" font-size="8" fill="#333">Task A: 350 GB</text>
+    <rect x="480" y="103" width="55" height="18" rx="3" fill="#6c5ce7"/><text x="545" y="116" font-size="8" fill="#333">Task B: 350 GB</text>
+    <rect x="480" y="124" width="55" height="18" rx="3" fill="#00b894"/><text x="545" y="137" font-size="8" fill="#333">Task C: 350 GB</text>
+    <text x="480" y="156" font-size="8" fill="#666">... Task Z: 350 GB</text>
+    <text x="700" y="95" font-size="10" fill="#e74c3c" font-weight="bold">10 tasks = 3.5 TB</text>
+    <text x="700" y="115" font-size="10" fill="#e74c3c" font-weight="bold">100 customers = 35 TB</text>
+    <text x="700" y="140" font-size="9" fill="#666">Completely impractical</text>
+    <text x="700" y="158" font-size="9" fill="#666">for multi-tenant deployment</text>
+  </svg>
+  <div class="warn-box" style="margin-top:0.3em;">
+    <strong>The question LoRA answers:</strong> "What if the weight update ΔW doesn't NEED all d×d dimensions? What if it lives in a much smaller subspace?"
+  </div>
+  <p class="citation">Aghajanyan et al., 2021, "Intrinsic Dimensionality Explains the Effectiveness of Language Model Fine-Tuning," ACL, arXiv:2012.13255</p>
+</section>
+
+<!-- LORA: THE KEY INSIGHT -->
+<section>
+  <h2>LoRA &#x2014; The Key Insight</h2>
+  <p style="font-size:0.68em;">Fine-tuning updates live in a <strong>low-rank subspace</strong>. Decompose the update into two tiny matrices.</p>
+  <svg viewBox="0 0 900 250" style="width:92%; margin-top:0.2em;">
+    <!-- Left: frozen W -->
+    <rect x="30" y="40" width="120" height="120" rx="6" fill="#e8f4fd" stroke="#2980b9" stroke-width="2"/>
+    <text x="90" y="95" text-anchor="middle" font-size="14" fill="#2980b9" font-weight="bold">W</text>
+    <text x="90" y="115" text-anchor="middle" font-size="8" fill="#2980b9">d × k</text>
+    <text x="90" y="175" text-anchor="middle" font-size="8" fill="#2980b9" font-weight="bold">FROZEN</text>
+    <text x="90" y="188" text-anchor="middle" font-size="7" fill="#666">No gradients</text>
+    <!-- Plus sign -->
+    <text x="180" y="105" text-anchor="middle" font-size="24" fill="#333">+</text>
+    <!-- LoRA path: A then B -->
+    <rect x="220" y="60" width="50" height="100" rx="4" fill="#e8f8f5" stroke="#00b894" stroke-width="2"/>
+    <text x="245" y="105" text-anchor="middle" font-size="10" fill="#00b894" font-weight="bold">A</text>
+    <text x="245" y="120" text-anchor="middle" font-size="7" fill="#00b894">r × k</text>
+    <text x="285" y="105" text-anchor="middle" font-size="14" fill="#333">×</text>
+    <rect x="300" y="40" width="100" height="50" rx="4" fill="#fff9e6" stroke="#f39c12" stroke-width="2"/>
+    <text x="350" y="65" text-anchor="middle" font-size="10" fill="#f39c12" font-weight="bold">B</text>
+    <text x="350" y="80" text-anchor="middle" font-size="7" fill="#f39c12">d × r</text>
+    <text x="310" y="175" text-anchor="middle" font-size="8" fill="#00b894" font-weight="bold">TRAINABLE</text>
+    <text x="310" y="188" text-anchor="middle" font-size="7" fill="#666">Only these get gradients</text>
+    <!-- Right side: the math -->
+    <rect x="460" y="30" width="410" height="200" rx="8" fill="#f8f6ff" stroke="#6c5ce7" stroke-width="1.5"/>
+    <text x="665" y="55" text-anchor="middle" font-size="11" fill="#6c5ce7" font-weight="bold">The Math</text>
+    <text x="490" y="80" font-size="10" fill="#333">Full fine-tuning: W' = W + ΔW</text>
+    <text x="490" y="97" font-size="8" fill="#666">ΔW has d×k = 4096×4096 = 16.7M params per layer</text>
+    <text x="490" y="125" font-size="10" fill="#00b894" font-weight="bold">LoRA: W' = W + B·A</text>
+    <text x="490" y="142" font-size="8" fill="#666">B·A has r×(d+k) = 8×(4096+4096) = 65K params per layer</text>
+    <text x="490" y="170" font-size="10" fill="#e74c3c" font-weight="bold">256× fewer parameters per layer</text>
+    <line x1="480" y1="182" x2="850" y2="182" stroke="#eee"/>
+    <text x="490" y="200" font-size="9" fill="#333">For GPT-3 total:</text>
+    <text x="490" y="216" font-size="9" fill="#666">Full FT: 175,000,000,000 params</text>
+    <text x="490" y="232" font-size="9" fill="#00b894" font-weight="bold">LoRA (r=4): 4,700,000 params → 37,000× reduction</text>
+  </svg>
+  <p class="citation">Hu et al., 2021, "LoRA: Low-Rank Adaptation of Large Language Models," arXiv:2106.09685 (Microsoft)</p>
+</section>
+
+<!-- LORA: HOW IT WORKS -->
+<section>
+  <h2>LoRA &#x2014; How It Works</h2>
+  <p style="font-size:0.65em;">Train tiny adapters alongside frozen weights. At inference: merge them. <strong>Zero extra latency.</strong></p>
+  <svg viewBox="0 0 900 200" style="width:92%; margin-top:0.2em;">
+    <!-- Training mode -->
+    <text x="200" y="18" text-anchor="middle" font-size="10" fill="#2980b9" font-weight="bold">During Training</text>
+    <rect x="50" y="25" width="300" height="155" rx="8" fill="#e8f4fd" stroke="#2980b9" stroke-width="1.5"/>
+    <!-- Input -->
+    <rect x="170" y="150" width="60" height="22" rx="4" fill="#f0f4f8" stroke="#999"/>
+    <text x="200" y="165" text-anchor="middle" font-size="8" fill="#333">Input x</text>
+    <!-- Frozen W path -->
+    <path d="M 170 150 L 100 110" stroke="#2980b9" stroke-width="1.5" marker-end="url(#lora1)"/>
+    <rect x="70" y="70" width="70" height="35" rx="4" fill="#fff" stroke="#2980b9" stroke-width="2"/>
+    <text x="105" y="85" text-anchor="middle" font-size="8" fill="#2980b9" font-weight="bold">W</text>
+    <text x="105" y="98" text-anchor="middle" font-size="6" fill="#666">frozen</text>
+    <text x="105" y="60" text-anchor="middle" font-size="7" fill="#2980b9">h₁ = Wx</text>
+    <!-- LoRA path -->
+    <path d="M 230 150 L 280 130" stroke="#00b894" stroke-width="1.5" marker-end="url(#lora1)"/>
+    <rect x="260" y="100" width="55" height="25" rx="4" fill="#e8f8f5" stroke="#00b894" stroke-width="2"/>
+    <text x="287" y="116" text-anchor="middle" font-size="7" fill="#00b894" font-weight="bold">A (down)</text>
+    <path d="M 287 100 L 287 80" stroke="#00b894" stroke-width="1.5" marker-end="url(#lora1)"/>
+    <rect x="260" y="50" width="55" height="25" rx="4" fill="#fff9e6" stroke="#f39c12" stroke-width="2"/>
+    <text x="287" y="66" text-anchor="middle" font-size="7" fill="#f39c12" font-weight="bold">B (up)</text>
+    <text x="287" y="42" text-anchor="middle" font-size="7" fill="#f39c12">h₂ = B(Ax)</text>
+    <!-- Sum -->
+    <circle cx="200" cy="38" r="10" fill="#6c5ce7" opacity="0.2" stroke="#6c5ce7"/>
+    <text x="200" y="42" text-anchor="middle" font-size="10" fill="#6c5ce7" font-weight="bold">+</text>
+    <defs><marker id="lora1" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto"><polygon points="0 0, 6 2, 0 4" fill="#666"/></marker></defs>
+    <!-- Inference mode -->
+    <text x="620" y="18" text-anchor="middle" font-size="10" fill="#00b894" font-weight="bold">During Inference (after merge)</text>
+    <rect x="470" y="25" width="300" height="155" rx="8" fill="#e8f8f5" stroke="#00b894" stroke-width="1.5"/>
+    <rect x="575" y="140" width="90" height="25" rx="4" fill="#f0f4f8" stroke="#999"/>
+    <text x="620" y="157" text-anchor="middle" font-size="8" fill="#333">Input x</text>
+    <path d="M 620 140 L 620 110" stroke="#00b894" stroke-width="2" marker-end="url(#lora1)"/>
+    <rect x="555" y="70" width="130" height="38" rx="6" fill="#00b894" stroke="#00b894" stroke-width="2"/>
+    <text x="620" y="88" text-anchor="middle" font-size="9" fill="white" font-weight="bold">W + BA</text>
+    <text x="620" y="102" text-anchor="middle" font-size="7" fill="#d5f5e3">single merged matrix</text>
+    <text x="620" y="55" text-anchor="middle" font-size="8" fill="#00b894" font-weight="bold">Same speed as original!</text>
+    <!-- Bottom row: key advantages -->
+    <rect x="50" y="185" width="800" height="10" rx="0" fill="none"/>
+  </svg>
+  <div class="two-col" style="margin-top:0.3em;">
+    <div>
+      <h3 style="color:var(--green);">Initialization</h3>
+      <ul>
+        <li><strong>A:</strong> Random Gaussian (diversity)</li>
+        <li><strong>B:</strong> Zeros (start at pre-trained W)</li>
+        <li>Model begins exactly where pre-training left off</li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="color:var(--accent2);">Task Switching</h3>
+      <ul>
+        <li>Swap LoRA adapters = swap tasks</li>
+        <li>Each adapter: ~4-50 MB</li>
+        <li>1000 customers × 20MB = 20 GB total</li>
+        <li>vs. 1000 × 14GB = 14 TB (full FT)</li>
+      </ul>
+    </div>
+  </div>
+  <p class="citation">Hu et al., 2021, arXiv:2106.09685 | Key result: &lt;0.3% gap from full fine-tuning with 10,000x fewer parameters</p>
+</section>
+
+<!-- LORA RESULTS -->
+<section>
+  <h2>LoRA Results &#x2014; The Evidence</h2>
+  <p style="font-size:0.68em;">10,000× fewer parameters. Within 0.3% of full fine-tuning. Verified across model sizes.</p>
+  <div class="two-col" style="margin-top:0.4em;">
+    <div>
+      <h3>Performance Comparison</h3>
+      <table>
+        <tr><th>Model</th><th>Full FT Params</th><th>LoRA (r=4)</th><th>Reduction</th></tr>
+        <tr><td>GPT-3 175B</td><td>175B</td><td>4.7M</td><td style="color:var(--green); font-weight:bold;">37,000×</td></tr>
+        <tr><td>RoBERTa-base</td><td>125M</td><td>0.3M</td><td style="color:var(--green);">417×</td></tr>
+        <tr><td>GPT-2 Medium</td><td>354M</td><td>0.35M</td><td style="color:var(--green);">1,000×</td></tr>
+      </table>
+      <div class="highlight-box" style="margin-top:0.4em;">
+        All achieve <strong>&lt;0.3%</strong> gap from full FT performance.
+      </div>
+    </div>
+    <div>
+      <h3>Where to Apply LoRA</h3>
+      <table>
+        <tr><th>Configuration</th><th>Performance</th></tr>
+        <tr><td>Q, V only (original paper)</td><td>Good</td></tr>
+        <tr><td>Q, K, V, O (all attention)</td><td>Better</td></tr>
+        <tr><td style="font-weight:bold; color:var(--green);">All linear layers ★</td><td style="font-weight:bold; color:var(--green);">Best</td></tr>
+      </table>
+      <p style="font-size:0.8em; margin-top:0.3em; color:#666;"><strong>Modern best practice:</strong> Apply to ALL linear layers with rank 8-16.</p>
+    </div>
+  </div>
+  <svg viewBox="0 0 900 80" style="width:90%; margin-top:0.3em;">
+    <rect x="30" y="10" width="840" height="60" rx="6" fill="#f8f6ff" stroke="#6c5ce7" stroke-width="1.5"/>
+    <text x="450" y="32" text-anchor="middle" font-size="10" fill="#6c5ce7" font-weight="bold">Why Low Rank Works &#x2014; Intuition</text>
+    <text x="450" y="50" text-anchor="middle" font-size="9" fill="#333">You already know English (pre-training). Learning formal emails (fine-tuning) doesn't require relearning all of English.</text>
+    <text x="450" y="64" text-anchor="middle" font-size="9" fill="#666">You just need a few directions of change: "more formal," "shorter," "professional." A low-rank subspace.</text>
+  </svg>
+  <p class="citation">Hu et al., 2021, arXiv:2106.09685, Tables 2-4 | Aghajanyan et al., 2021, ACL (intrinsic dimensionality)</p>
+</section>
+
+<!-- QLORA: DEMOCRATIZING FINE-TUNING -->
+<section>
+  <h2>QLoRA &#x2014; Democratizing Fine-Tuning</h2>
+  <p style="font-size:0.65em;">Quantize the base model to 4-bit + LoRA in 16-bit = 65B model on a <strong>single 48GB GPU</strong>.</p>
+  <svg viewBox="0 0 900 180" style="width:92%; margin-top:0.3em;">
+    <!-- Three innovations -->
+    <rect x="20" y="10" width="270" height="100" rx="8" fill="#e8f4fd" stroke="#2980b9" stroke-width="1.5"/>
+    <text x="155" y="32" text-anchor="middle" font-size="9" fill="#2980b9" font-weight="bold">1. NormalFloat4 (NF4)</text>
+    <text x="155" y="50" text-anchor="middle" font-size="8" fill="#333">Quantization bins match</text>
+    <text x="155" y="63" text-anchor="middle" font-size="8" fill="#333">the Gaussian distribution</text>
+    <text x="155" y="78" text-anchor="middle" font-size="8" fill="#333">of pre-trained weights</text>
+    <text x="155" y="100" text-anchor="middle" font-size="7" fill="#666">Info-theoretically optimal for normal data</text>
+    <rect x="310" y="10" width="270" height="100" rx="8" fill="#fff9e6" stroke="#f39c12" stroke-width="1.5"/>
+    <text x="445" y="32" text-anchor="middle" font-size="9" fill="#f39c12" font-weight="bold">2. Double Quantization</text>
+    <text x="445" y="50" text-anchor="middle" font-size="8" fill="#333">Quantize the quantization</text>
+    <text x="445" y="63" text-anchor="middle" font-size="8" fill="#333">constants themselves</text>
+    <text x="445" y="78" text-anchor="middle" font-size="8" fill="#333">Saves 0.37 bits/param</text>
+    <text x="445" y="100" text-anchor="middle" font-size="7" fill="#666">3GB saved for a 65B model</text>
+    <rect x="600" y="10" width="280" height="100" rx="8" fill="#e8f8f5" stroke="#00b894" stroke-width="1.5"/>
+    <text x="740" y="32" text-anchor="middle" font-size="9" fill="#00b894" font-weight="bold">3. Paged Optimizers</text>
+    <text x="740" y="50" text-anchor="middle" font-size="8" fill="#333">Offload to CPU RAM</text>
+    <text x="740" y="63" text-anchor="middle" font-size="8" fill="#333">when GPU memory spikes</text>
+    <text x="740" y="78" text-anchor="middle" font-size="8" fill="#333">Prevents OOM crashes</text>
+    <text x="740" y="100" text-anchor="middle" font-size="7" fill="#666">Automatic memory management</text>
+    <!-- Memory comparison bars -->
+    <text x="450" y="130" text-anchor="middle" font-size="10" fill="#333" font-weight="bold">Memory for 65B Model Fine-Tuning</text>
+    <rect x="100" y="140" width="520" height="16" rx="3" fill="#e74c3c"/><text x="630" y="152" font-size="8" fill="#e74c3c" font-weight="bold">Full FT: ~520 GB</text>
+    <rect x="100" y="158" width="170" height="16" rx="3" fill="#f39c12"/><text x="280" y="170" font-size="8" fill="#f39c12" font-weight="bold">LoRA (FP16): ~170 GB</text>
+    <rect x="100" y="176" width="42" height="16" rx="3" fill="#00b894"/><text x="150" y="188" font-size="8" fill="#00b894" font-weight="bold">QLoRA: ~42 GB ✓ single GPU!</text>
+  </svg>
+  <p class="citation">Dettmers et al., 2023, "QLoRA: Efficient Finetuning of Quantized LLMs," arXiv:2305.14314 (University of Washington)</p>
+</section>
+
+<!-- QLORA: THE RESULT -->
+<section>
+  <h2>QLoRA: The Democratization Result</h2>
+  <p style="font-size:0.68em;">Before: multi-million dollar enterprise clusters. After: a single GPU and $50.</p>
+  <div class="two-col" style="margin-top:0.4em;">
+    <div>
+      <h3 style="color:var(--red);">Before QLoRA (2022)</h3>
+      <ul>
+        <li>Fine-tune 65B: 8× A100 GPUs ($200K+)</li>
+        <li>Multi-node cluster required</li>
+        <li>Enterprise-only capability</li>
+        <li>Days of training</li>
+      </ul>
+      <h3 style="color:var(--green); margin-top:0.5em;">After QLoRA (2023)</h3>
+      <ul>
+        <li>Fine-tune 65B: 1× A100 GPU ($15K)</li>
+        <li>Single machine</li>
+        <li>Graduate student budget</li>
+        <li>24 hours of training</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Guanaco: Flagship Result</h3>
+      <table>
+        <tr><th>Metric</th><th>Result</th></tr>
+        <tr><td>Base model</td><td>LLaMA 65B (4-bit)</td></tr>
+        <tr><td>Training time</td><td>24 hours, 1 GPU</td></tr>
+        <tr><td>Cost</td><td>~$50</td></tr>
+        <tr><td>vs. ChatGPT (Vicuna)</td><td style="color:var(--green); font-weight:bold;">99.3% quality</td></tr>
+      </table>
+      <div class="highlight-box" style="margin-top:0.5em;">
+        <strong>QLoRA memory comparison:</strong><br>
+        7B model: 56GB → <strong>6GB</strong> (RTX 3090 ✓)<br>
+        13B model: 104GB → <strong>10GB</strong> (RTX 4090 ✓)<br>
+        70B model: 560GB → <strong>48GB</strong> (A100 ✓)
+      </div>
+    </div>
+  </div>
+  <p class="citation">Dettmers et al., 2023, arXiv:2305.14314 | Guanaco: 99.3% ChatGPT on Vicuna benchmark, single-GPU training</p>
+</section>
+
+<!-- LORA FAMILY TREE -->
+<section>
+  <h2>The LoRA Family &#x2014; Evolution Tree</h2>
+  <p style="font-size:0.65em;">LoRA spawned a family of variants, each addressing a different limitation.</p>
+  <svg viewBox="0 0 900 240" style="width:92%; margin-top:0.2em;">
+    <!-- Root -->
+    <rect x="340" y="5" width="220" height="30" rx="5" fill="#e74c3c" opacity="0.15" stroke="#e74c3c" stroke-width="1.5"/>
+    <text x="450" y="24" text-anchor="middle" font-size="9" fill="#e74c3c" font-weight="bold">Full Fine-Tuning (100% params)</text>
+    <line x1="450" y1="35" x2="450" y2="55" stroke="#999" stroke-width="1.5"/>
+    <!-- LoRA -->
+    <rect x="350" y="55" width="200" height="35" rx="6" fill="#6c5ce7" stroke="#6c5ce7" stroke-width="2"/>
+    <text x="450" y="73" text-anchor="middle" font-size="10" fill="white" font-weight="bold">LoRA (Hu et al., 2021)</text>
+    <text x="450" y="85" text-anchor="middle" font-size="7" fill="#d5d0f5">Low-rank updates, zero inference latency</text>
+    <!-- Branches from LoRA -->
+    <line x1="350" y1="90" x2="100" y2="120" stroke="#6c5ce7" stroke-width="1"/>
+    <line x1="390" y1="90" x2="280" y2="120" stroke="#6c5ce7" stroke-width="1"/>
+    <line x1="450" y1="90" x2="450" y2="120" stroke="#6c5ce7" stroke-width="1"/>
+    <line x1="510" y1="90" x2="620" y2="120" stroke="#6c5ce7" stroke-width="1"/>
+    <line x1="550" y1="90" x2="790" y2="120" stroke="#6c5ce7" stroke-width="1"/>
+    <!-- QLoRA -->
+    <rect x="30" y="120" width="140" height="45" rx="5" fill="#e8f8f5" stroke="#00b894" stroke-width="1.5"/>
+    <text x="100" y="138" text-anchor="middle" font-size="8" fill="#00b894" font-weight="bold">QLoRA (2023)</text>
+    <text x="100" y="150" text-anchor="middle" font-size="7" fill="#666">4-bit base + LoRA</text>
+    <text x="100" y="161" text-anchor="middle" font-size="7" fill="#666">Memory efficiency</text>
+    <!-- AdaLoRA -->
+    <rect x="205" y="120" width="150" height="45" rx="5" fill="#e8f4fd" stroke="#2980b9" stroke-width="1.5"/>
+    <text x="280" y="138" text-anchor="middle" font-size="8" fill="#2980b9" font-weight="bold">AdaLoRA (2023)</text>
+    <text x="280" y="150" text-anchor="middle" font-size="7" fill="#666">Adaptive rank</text>
+    <text x="280" y="161" text-anchor="middle" font-size="7" fill="#666">per layer allocation</text>
+    <!-- DoRA -->
+    <rect x="380" y="120" width="140" height="45" rx="5" fill="#fff9e6" stroke="#f39c12" stroke-width="2"/>
+    <text x="450" y="138" text-anchor="middle" font-size="8" fill="#f39c12" font-weight="bold">DoRA (2024) ★</text>
+    <text x="450" y="150" text-anchor="middle" font-size="7" fill="#666">Magnitude + direction</text>
+    <text x="450" y="161" text-anchor="middle" font-size="7" fill="#666">+0.5-1.5% over LoRA</text>
+    <!-- LoRA-XS -->
+    <rect x="550" y="120" width="140" height="45" rx="5" fill="#f8f6ff" stroke="#6c5ce7" stroke-width="1.5"/>
+    <text x="620" y="138" text-anchor="middle" font-size="8" fill="#6c5ce7" font-weight="bold">LoRA-XS (2024)</text>
+    <text x="620" y="150" text-anchor="middle" font-size="7" fill="#666">SVD-initialized</text>
+    <text x="620" y="161" text-anchor="middle" font-size="7" fill="#666">100× fewer than LoRA</text>
+    <!-- LoRA+ -->
+    <rect x="720" y="120" width="140" height="45" rx="5" fill="#ffeef0" stroke="#e74c3c" stroke-width="1.5"/>
+    <text x="790" y="138" text-anchor="middle" font-size="8" fill="#e74c3c" font-weight="bold">LoRA+ (2024)</text>
+    <text x="790" y="150" text-anchor="middle" font-size="7" fill="#666">Different LR for A, B</text>
+    <text x="790" y="161" text-anchor="middle" font-size="7" fill="#666">Better convergence</text>
+    <!-- Bottom: other methods -->
+    <rect x="30" y="185" width="840" height="45" rx="6" fill="#f0f4f8" stroke="#ddd"/>
+    <text x="450" y="203" text-anchor="middle" font-size="9" fill="#333" font-weight="bold">Other PEFT Methods (not LoRA-based)</text>
+    <rect x="60" y="210" width="120" height="16" rx="3" fill="#ddd"/><text x="120" y="221" text-anchor="middle" font-size="7" fill="#555">Adapters (2019)</text>
+    <rect x="200" y="210" width="120" height="16" rx="3" fill="#ddd"/><text x="260" y="221" text-anchor="middle" font-size="7" fill="#555">Prefix Tuning (2021)</text>
+    <rect x="340" y="210" width="120" height="16" rx="3" fill="#ddd"/><text x="400" y="221" text-anchor="middle" font-size="7" fill="#555">(IA)³ (2022)</text>
+    <rect x="480" y="210" width="130" height="16" rx="3" fill="#ddd"/><text x="545" y="221" text-anchor="middle" font-size="7" fill="#555">Prompt Tuning (2021)</text>
+    <text x="700" y="221" font-size="7" fill="#999">← all have inference latency or limited capacity</text>
+  </svg>
+  <p class="citation">Hu 2021 | Dettmers 2023 | Zhang 2023 (AdaLoRA) | Liu 2024 (DoRA, ICML) | Hayou 2024 (LoRA+) | arXiv:2405.17604 (LoRA-XS)</p>
+</section>
+
+<!-- DECISION GUIDE -->
+<section>
+  <h2>Practical Decision Guide</h2>
+  <p style="font-size:0.68em;">Which method for YOUR situation? Follow the constraints.</p>
+  <table style="margin-top:0.3em;">
+    <tr><th>Your Situation</th><th>Method</th><th>Why</th></tr>
+    <tr><td>Single GPU, &lt;24GB</td><td style="color:var(--green); font-weight:bold;">QLoRA (4-bit)</td><td>Only option that fits</td></tr>
+    <tr><td>Single GPU, 48-80GB</td><td style="color:var(--accent2); font-weight:bold;">LoRA or DoRA (FP16)</td><td>Full quality, fast iteration</td></tr>
+    <tr><td>Multiple GPUs available</td><td>LoRA with rank 32-64</td><td>Best quality per dollar</td></tr>
+    <tr><td>Maximum quality needed</td><td style="color:var(--orange); font-weight:bold;">DoRA on all linear layers</td><td>Closest to full FT</td></tr>
+    <tr><td>Extreme param budget</td><td>LoRA-XS</td><td>100× fewer than standard LoRA</td></tr>
+    <tr><td>Serve 100+ variants</td><td style="color:var(--accent); font-weight:bold;">LoRA (swappable adapters)</td><td>Storage/serving efficiency</td></tr>
+    <tr><td>Model &gt;100B params</td><td style="color:var(--green); font-weight:bold;">QLoRA (mandatory)</td><td>Memory is the hard constraint</td></tr>
+  </table>
+  <div class="two-col" style="margin-top:0.4em;">
+    <div>
+      <h3>Rank Selection</h3>
+      <table>
+        <tr><th>Rank</th><th>Quality</th><th>Use When</th></tr>
+        <tr><td>4</td><td>95-97%</td><td>Quick experiments</td></tr>
+        <tr><td>8</td><td>97-99%</td><td>Standard production</td></tr>
+        <tr><td>16</td><td>98-99.5%</td><td>High-quality prod</td></tr>
+        <tr><td>64+</td><td>~99.9%</td><td>Diminishing returns</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>Training Costs (2025-2026)</h3>
+      <table>
+        <tr><th>Model</th><th>Method</th><th>Cost</th></tr>
+        <tr><td>7B</td><td>QLoRA</td><td>~$5</td></tr>
+        <tr><td>7B</td><td>LoRA</td><td>~$10</td></tr>
+        <tr><td>70B</td><td>QLoRA</td><td>~$50-100</td></tr>
+        <tr><td>405B</td><td>QLoRA</td><td>~$200-500</td></tr>
+      </table>
+    </div>
+  </div>
+  <p class="citation">Practical estimates based on cloud GPU pricing (A100/H100) and published training times from LoRA/QLoRA papers</p>
+</section>
+
+<!-- DATA QUALITY: THE REAL BOTTLENECK -->
+<section>
+  <h2>The Real Bottleneck: Data Quality</h2>
+  <p style="font-size:0.65em;">LoRA made fine-tuning cheap and fast. Now the dominant factor is <strong>what you fine-tune ON</strong>.</p>
+  <svg viewBox="0 0 900 130" style="width:90%; margin-top:0.3em;">
+    <text x="450" y="18" text-anchor="middle" font-size="10" fill="#333" font-weight="bold">What Matters Most in Fine-Tuning?</text>
+    <!-- Pie chart approximation using bars -->
+    <rect x="100" y="30" width="480" height="28" rx="5" fill="#6c5ce7"/>
+    <text x="340" y="49" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Data Quality (60%)</text>
+    <rect x="100" y="62" width="200" height="28" rx="5" fill="#2980b9"/>
+    <text x="200" y="81" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Data Diversity (25%)</text>
+    <rect x="100" y="94" width="120" height="28" rx="5" fill="#00b894"/>
+    <text x="160" y="113" text-anchor="middle" font-size="10" fill="white" font-weight="bold">Method (15%)</text>
+    <rect x="620" y="30" width="260" height="92" rx="6" fill="#f8f6ff" stroke="#6c5ce7" stroke-width="1.5"/>
+    <text x="750" y="52" text-anchor="middle" font-size="9" fill="#6c5ce7" font-weight="bold">From Our Research</text>
+    <text x="640" y="70" font-size="8" fill="#333">&#x2022; 1 instruction = 200 examples</text>
+    <text x="640" y="85" font-size="8" fill="#333">&#x2022; TarGEN: synthetic > original (+1-2%)</text>
+    <text x="640" y="100" font-size="8" fill="#333">&#x2022; VAIDA: 45.8% artifact reduction</text>
+    <text x="640" y="115" font-size="8" fill="#333">&#x2022; Quality > quantity always</text>
+  </svg>
+  <div class="warn-box" style="margin-top:0.3em;">
+    <strong>Practical implication:</strong> Before optimizing your LoRA rank, learning rate, or adapter placement &#x2014; first optimize your training DATA. A LoRA adapter trained on 1,000 high-quality examples outperforms one trained on 10,000 noisy examples.
+  </div>
+  <p class="citation">Sachdeva, Mishra et al., 2022, "Is High Quality Data All We Need?" arXiv:2203.06404 | Gupta, Mishra et al., 2023, "TarGEN" | Arunkumar, Mishra, Sachdeva et al., 2023, "VAIDA," EACL</p>
+</section>
+
+<!-- SECTION 4 RECAP -->
+<section>
+  <h2>Section 4 - Summary</h2>
+  <div class="two-col" style="margin-top:0.4em;">
+    <div>
+      <h3>The LoRA Revolution</h3>
+      <svg viewBox="0 0 350 120" style="width:100%;">
+        <rect x="10" y="10" width="330" height="25" rx="4" fill="#ffeef0" stroke="#e74c3c"/>
+        <text x="175" y="27" text-anchor="middle" font-size="8" fill="#e74c3c">Full FT: 175B params, 2.1TB memory, $millions</text>
+        <path d="M 175 37 L 175 48" stroke="#999" stroke-width="1.5" marker-end="url(#sr2)"/>
+        <rect x="50" y="50" width="250" height="25" rx="4" fill="#e8f4fd" stroke="#2980b9"/>
+        <text x="175" y="67" text-anchor="middle" font-size="8" fill="#2980b9">LoRA: 4.7M params, &lt;0.3% gap, zero latency</text>
+        <path d="M 175 77 L 175 88" stroke="#999" stroke-width="1.5" marker-end="url(#sr2)"/>
+        <rect x="80" y="90" width="190" height="25" rx="4" fill="#e8f8f5" stroke="#00b894" stroke-width="2"/>
+        <text x="175" y="107" text-anchor="middle" font-size="8" fill="#00b894" font-weight="bold">QLoRA: 65B on 1 GPU, $50, 24h</text>
+        <defs><marker id="sr2" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto"><polygon points="0 0, 6 2, 0 4" fill="#999"/></marker></defs>
+      </svg>
+    </div>
+    <div>
+      <h3>Key Lessons</h3>
+      <ul>
+        <li><strong>Low-rank works</strong> &#x2014; 37,000× reduction, &lt;0.3% gap</li>
+        <li><strong>Zero latency</strong> &#x2014; merged weights at inference</li>
+        <li><strong>Democratized</strong> &#x2014; single GPU fine-tuning for all</li>
+        <li><strong>Data dominates</strong> &#x2014; quality beats method choice</li>
+        <li><strong>DoRA is current best</strong> &#x2014; +0.5-1.5% over standard LoRA</li>
+      </ul>
+      <div class="highlight-box" style="margin-top:0.4em;">
+        <strong>The real bottleneck shifted:</strong><br>
+        From compute → to data quality
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:0.4em; font-size:0.6em; color:#555;">
+    <strong>Key papers:</strong> Hu 2021 (LoRA) | Dettmers 2023 (QLoRA) | Liu 2024 (DoRA) | Aghajanyan 2021 | Sachdeva, Mishra 2022
+  </p>
+  <p style="margin-top:0.3em; font-size:0.7em; color:var(--accent);"><strong>Next:</strong> How do we build real applications with these models? APIs, RAG, and Agents.</p>
+</section>
+
+
+<!-- SECTION 7 HEADER -->
+<section>
+  <p class="section-label">Section 7</p>
+  <h1>Hype vs. Reality</h1>
+  <h2 style="color:var(--accent);">Critical Thinking for the AI Era</h2>
+  <p style="font-size:0.65em; color:#666; margin-top:0.8em;">How to separate real breakthroughs from marketing. A framework for evaluating every AI claim you encounter.</p>
+</section>
+
+<!-- CLEVER HANS -->
+<section>
+  <h2>The Clever Hans Problem</h2>
+  <p style="font-size:0.65em;">Before evaluating AI claims, meet the horse that fooled the world's scientists.</p>
+  <div class="two-col" style="margin-top:0.4em;">
+    <div>
+      <h3 style="color:var(--orange);">The Story (1900s Germany)</h3>
+      <ul>
+        <li>A horse named <strong>Clever Hans</strong> appeared to solve math, tell time, and read</li>
+        <li>He'd tap his hoof the correct number of times</li>
+        <li>Scientists were convinced — the horse was "intelligent"</li>
+        <li>Psychologist Oskar Pfungst discovered the truth: Hans read <strong>involuntary body language cues</strong> from questioners</li>
+        <li>When the questioner didn't know the answer → Hans couldn't perform</li>
+      </ul>
+      <div class="warn-box" style="margin-top:0.4em;">
+        <strong>He wasn't solving problems. He found a shortcut that gave the right answer.</strong>
+      </div>
+    </div>
+    <div>
+      <h3 style="color:var(--red);">The AI Parallel</h3>
+      <ul>
+        <li><strong>Image classifiers</strong> use watermarks and background patterns instead of recognizing objects</li>
+        <li><strong>BERT</strong> scored 77% on argument reasoning by exploiting dataset artifacts — not understanding arguments</li>
+        <li><strong>"Emergent abilities"</strong> may be artifacts of metric choice, not genuine capability jumps (Schaeffer et al., 2023)</li>
+        <li><strong>Benchmark scores</strong> reflect memorization and shortcuts as much as ability</li>
+      </ul>
+      <div class="highlight-box" style="margin-top:0.4em;">
+        <strong>The question to always ask:</strong><br>
+        "Is this Clever Hans? Is the model <em>solving</em> the problem, or did it find a <em>shortcut</em>?"
+      </div>
+    </div>
+  </div>
+  <p class="citation">Lapuschkin et al., 2019, "Unmasking Clever Hans predictors," Nature Communications, DOI:10.1038/s41467-019-08987-4 | Niven &amp; Kao, 2019, ACL | Schaeffer et al., 2023, arXiv:2304.15004</p>
+</section>
+
+<!-- CLEVER HANS: HOW TO DETECT -->
+<section>
+  <h2>Detecting Clever Hans in AI Systems</h2>
+  <p style="font-size:0.65em;">Practical tests to check if your model is actually solving the problem:</p>
+  <svg viewBox="0 0 900 280" style="width:90%; margin-top:0.3em;">
+    <!-- Test 1 -->
+    <rect x="20" y="20" width="260" height="100" rx="8" fill="#e8f4fd" stroke="#2980b9" stroke-width="1.5"/>
+    <text x="150" y="42" text-anchor="middle" font-size="10" fill="#2980b9" font-weight="bold">1. Out-of-Distribution Test</text>
+    <text x="150" y="62" text-anchor="middle" font-size="9" fill="#333">Test on data the model hasn't seen</text>
+    <text x="150" y="78" text-anchor="middle" font-size="9" fill="#333">from a different source/domain</text>
+    <text x="150" y="100" text-anchor="middle" font-size="8" fill="#666">Sharp drop = relying on shortcuts</text>
+    <!-- Test 2 -->
+    <rect x="320" y="20" width="260" height="100" rx="8" fill="#fff9e6" stroke="#f39c12" stroke-width="1.5"/>
+    <text x="450" y="42" text-anchor="middle" font-size="10" fill="#f39c12" font-weight="bold">2. Rephrase Test</text>
+    <text x="450" y="62" text-anchor="middle" font-size="9" fill="#333">Same question, different wording</text>
+    <text x="450" y="78" text-anchor="middle" font-size="9" fill="#333">or slightly modified numbers</text>
+    <text x="450" y="100" text-anchor="middle" font-size="8" fill="#666">Fails on paraphrase = pattern-matching</text>
+    <!-- Test 3 -->
+    <rect x="620" y="20" width="260" height="100" rx="8" fill="#e8f8f5" stroke="#00b894" stroke-width="1.5"/>
+    <text x="750" y="42" text-anchor="middle" font-size="10" fill="#00b894" font-weight="bold">3. Explainability Check</text>
+    <text x="750" y="62" text-anchor="middle" font-size="9" fill="#333">What is the model attending to?</text>
+    <text x="750" y="78" text-anchor="middle" font-size="9" fill="#333">Use attention maps / saliency</text>
+    <text x="750" y="100" text-anchor="middle" font-size="8" fill="#666">Wrong features = Clever Hans</text>
+    <!-- Test 4 -->
+    <rect x="20" y="145" width="260" height="100" rx="8" fill="#ffeef0" stroke="#e74c3c" stroke-width="1.5"/>
+    <text x="150" y="167" text-anchor="middle" font-size="10" fill="#e74c3c" font-weight="bold">4. Adversarial Probe</text>
+    <text x="150" y="187" text-anchor="middle" font-size="9" fill="#333">Deliberately construct examples</text>
+    <text x="150" y="203" text-anchor="middle" font-size="9" fill="#333">that break likely shortcuts</text>
+    <text x="150" y="225" text-anchor="middle" font-size="8" fill="#666">Model crumbles = not robust</text>
+    <!-- Test 5 -->
+    <rect x="320" y="145" width="260" height="100" rx="8" fill="#f8f6ff" stroke="#6c5ce7" stroke-width="1.5"/>
+    <text x="450" y="167" text-anchor="middle" font-size="10" fill="#6c5ce7" font-weight="bold">5. Simple Baseline Comparison</text>
+    <text x="450" y="187" text-anchor="middle" font-size="9" fill="#333">Does a bag-of-words or regex</text>
+    <text x="450" y="203" text-anchor="middle" font-size="9" fill="#333">get similar accuracy?</text>
+    <text x="450" y="225" text-anchor="middle" font-size="8" fill="#666">If yes = benchmark is testing surface cues</text>
+    <!-- Takeaway -->
+    <rect x="620" y="145" width="260" height="100" rx="8" fill="#f0f4f8" stroke="#333" stroke-width="2"/>
+    <text x="750" y="167" text-anchor="middle" font-size="10" fill="#333" font-weight="bold">The Principle</text>
+    <text x="750" y="192" text-anchor="middle" font-size="10" fill="#6c5ce7">"A model is only as smart</text>
+    <text x="750" y="210" text-anchor="middle" font-size="10" fill="#6c5ce7">as the hardest test</text>
+    <text x="750" y="228" text-anchor="middle" font-size="10" fill="#6c5ce7">it can't shortcut."</text>
+  </svg>
+  <p class="citation">Geirhos et al., 2020, "Shortcut Learning in Deep Neural Networks," Nature Machine Intelligence | McCoy et al., 2019, "Right for the Wrong Reasons," ACL</p>
+</section>
+
 
 </div><!-- end .slides -->
 </div><!-- end .reveal -->
