@@ -226,50 +226,52 @@
 <!-- ============ EMBEDDINGS — HIGH DIMENSIONAL SPACE ============ -->
 <section>
   <h2>Step 1: Embeddings — Words Become Vectors</h2>
-  <p style="font-size:0.68em;">Each token is mapped to a point in a <strong>high-dimensional vector space</strong> (4,096–12,288 dimensions). We can only visualize 2–3, but the principle holds: <strong>geometry encodes meaning</strong>.</p>
-  <svg viewBox="0 0 900 280" style="width:90%;">
-    <!-- 3D-ish axes -->
-    <line x1="60" y1="230" x2="60" y2="40" stroke="#ddd" stroke-width="1.5"/>
-    <line x1="60" y1="230" x2="320" y2="230" stroke="#ddd" stroke-width="1.5"/>
-    <line x1="60" y1="230" x2="20" y2="260" stroke="#ddd" stroke-width="1"/>
-    <!-- Animal cluster -->
-    <circle cx="120" cy="170" r="4" fill="#e74c3c"/><text x="130" y="168" font-size="9" fill="#e74c3c">cat</text>
-    <circle cx="145" cy="185" r="4" fill="#e74c3c"/><text x="155" y="183" font-size="9" fill="#e74c3c">dog</text>
-    <circle cx="110" cy="190" r="4" fill="#e74c3c"/><text x="85" y="192" font-size="9" fill="#e74c3c">tiger</text>
-    <circle cx="135" cy="160" r="4" fill="#e74c3c"/><text x="145" y="158" font-size="9" fill="#e74c3c">lion</text>
-    <ellipse cx="128" cy="177" rx="42" ry="28" fill="none" stroke="#e74c3c" stroke-width="1" stroke-dasharray="3" opacity="0.6"/>
-    <!-- Country cluster -->
-    <circle cx="240" cy="80" r="4" fill="#2980b9"/><text x="250" y="78" font-size="9" fill="#2980b9">France</text>
-    <circle cx="260" cy="100" r="4" fill="#2980b9"/><text x="270" y="98" font-size="9" fill="#2980b9">Italy</text>
-    <circle cx="225" cy="95" r="4" fill="#2980b9"/><text x="195" y="95" font-size="9" fill="#2980b9">Japan</text>
-    <circle cx="250" cy="70" r="4" fill="#2980b9"/><text x="260" y="68" font-size="9" fill="#2980b9">Germany</text>
-    <ellipse cx="244" cy="87" rx="38" ry="28" fill="none" stroke="#2980b9" stroke-width="1" stroke-dasharray="3" opacity="0.6"/>
-    <!-- Emotion cluster -->
-    <circle cx="180" cy="130" r="4" fill="#00b894"/><text x="190" y="128" font-size="9" fill="#00b894">happy</text>
-    <circle cx="195" cy="145" r="4" fill="#00b894"/><text x="205" y="143" font-size="9" fill="#00b894">joyful</text>
-    <circle cx="168" cy="140" r="4" fill="#00b894"/><text x="140" y="142" font-size="9" fill="#00b894">elated</text>
-    <ellipse cx="181" cy="138" rx="32" ry="18" fill="none" stroke="#00b894" stroke-width="1" stroke-dasharray="3" opacity="0.6"/>
-    <!-- Right side: parallelogram -->
-    <circle cx="480" cy="60" r="6" fill="#6c5ce7"/><text x="500" y="58" font-size="11" fill="#6c5ce7" font-weight="bold">King</text>
-    <circle cx="480" cy="170" r="6" fill="#6c5ce7"/><text x="500" y="168" font-size="11" fill="#6c5ce7" font-weight="bold">Man</text>
-    <circle cx="680" cy="60" r="6" fill="#e84393"/><text x="700" y="58" font-size="11" fill="#e84393" font-weight="bold">Queen</text>
-    <circle cx="680" cy="170" r="6" fill="#e84393"/><text x="700" y="168" font-size="11" fill="#e84393" font-weight="bold">Woman</text>
-    <!-- Direction arrows -->
-    <path d="M 486 67 L 486 163" stroke="#00b894" stroke-width="2.5" marker-end="url(#eg)"/><text x="440" y="120" font-size="9" fill="#00b894" font-weight="bold">− gender</text>
-    <path d="M 686 67 L 686 163" stroke="#00b894" stroke-width="2.5" marker-end="url(#eg)"/>
-    <path d="M 490 57 L 673 57" stroke="#f39c12" stroke-width="2.5" marker-end="url(#eo)"/><text x="580" y="48" font-size="9" fill="#f39c12" font-weight="bold">+ royalty</text>
-    <path d="M 490 173 L 673 173" stroke="#f39c12" stroke-width="2.5" marker-end="url(#eo)"/>
-    <!-- Dashed diagonal -->
-    <path d="M 487 170 L 675 60" stroke="#6c5ce7" stroke-width="1.5" stroke-dasharray="5" opacity="0.5"/>
+  <p style="font-size:0.68em;">Each token is mapped to a <strong>vector</strong> (arrow from origin) in high-dimensional space. Direction and magnitude encode meaning.</p>
+  <svg viewBox="0 0 900 270" style="width:90%;">
+    <!-- Axes -->
+    <line x1="60" y1="220" x2="60" y2="30" stroke="#ccc" stroke-width="1.5"/><text x="45" y="25" font-size="8" fill="#999">dim₂</text>
+    <line x1="60" y1="220" x2="340" y2="220" stroke="#ccc" stroke-width="1.5"/><text x="345" y="225" font-size="8" fill="#999">dim₁</text>
+    <!-- Origin label -->
+    <circle cx="60" cy="220" r="3" fill="#999"/><text x="40" y="235" font-size="8" fill="#999">origin</text>
+    <!-- VECTORS as arrows from origin — Animals (red) -->
+    <line x1="60" y1="220" x2="130" y2="155" stroke="#e74c3c" stroke-width="2" marker-end="url(#va)"/><text x="135" y="150" font-size="9" fill="#e74c3c">cat</text>
+    <line x1="60" y1="220" x2="155" y2="165" stroke="#e74c3c" stroke-width="2" marker-end="url(#va)"/><text x="160" y="162" font-size="9" fill="#e74c3c">dog</text>
+    <line x1="60" y1="220" x2="115" y2="140" stroke="#e74c3c" stroke-width="2" marker-end="url(#va)"/><text x="90" y="135" font-size="9" fill="#e74c3c">lion</text>
+    <line x1="60" y1="220" x2="145" y2="145" stroke="#e74c3c" stroke-width="2" marker-end="url(#va)"/><text x="150" y="140" font-size="9" fill="#e74c3c">tiger</text>
+    <!-- Countries (blue) -->
+    <line x1="60" y1="220" x2="235" y2="65" stroke="#2980b9" stroke-width="2" marker-end="url(#vb)"/><text x="240" y="62" font-size="9" fill="#2980b9">France</text>
+    <line x1="60" y1="220" x2="260" y2="85" stroke="#2980b9" stroke-width="2" marker-end="url(#vb)"/><text x="265" y="82" font-size="9" fill="#2980b9">Italy</text>
+    <line x1="60" y1="220" x2="220" y2="80" stroke="#2980b9" stroke-width="2" marker-end="url(#vb)"/><text x="195" y="75" font-size="9" fill="#2980b9">Japan</text>
+    <!-- Emotions (green) -->
+    <line x1="60" y1="220" x2="185" y2="120" stroke="#00b894" stroke-width="2" marker-end="url(#vc)"/><text x="190" y="117" font-size="9" fill="#00b894">happy</text>
+    <line x1="60" y1="220" x2="200" y2="130" stroke="#00b894" stroke-width="2" marker-end="url(#vc)"/><text x="205" y="127" font-size="9" fill="#00b894">joyful</text>
     <defs>
-      <marker id="eg" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#00b894"/></marker>
-      <marker id="eo" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#f39c12"/></marker>
+      <marker id="va" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#e74c3c"/></marker>
+      <marker id="vb" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2980b9"/></marker>
+      <marker id="vc" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#00b894"/></marker>
+      <marker id="vp" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#6c5ce7"/></marker>
+      <marker id="vpk" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#e84393"/></marker>
+      <marker id="vdir" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#f39c12"/></marker>
     </defs>
+    <!-- Cluster labels -->
+    <text x="100" y="175" font-size="8" fill="#e74c3c" font-style="italic">animals cluster</text>
+    <text x="210" y="100" font-size="8" fill="#2980b9" font-style="italic">countries cluster</text>
+    <text x="175" y="142" font-size="8" fill="#00b894" font-style="italic">emotions</text>
+    <!-- Right side: King-Queen parallelogram with vectors -->
+    <circle cx="450" cy="200" r="3" fill="#999"/><text x="430" y="213" font-size="8" fill="#999">origin</text>
+    <line x1="450" y1="200" x2="510" y2="60" stroke="#6c5ce7" stroke-width="2.5" marker-end="url(#vp)"/><text x="518" y="55" font-size="10" fill="#6c5ce7" font-weight="bold">King</text>
+    <line x1="450" y1="200" x2="530" y2="140" stroke="#6c5ce7" stroke-width="2.5" marker-end="url(#vp)"/><text x="538" y="138" font-size="10" fill="#6c5ce7" font-weight="bold">Man</text>
+    <line x1="450" y1="200" x2="730" y2="60" stroke="#e84393" stroke-width="2.5" marker-end="url(#vpk)"/><text x="738" y="55" font-size="10" fill="#e84393" font-weight="bold">Queen</text>
+    <line x1="450" y1="200" x2="750" y2="140" stroke="#e84393" stroke-width="2.5" marker-end="url(#vpk)"/><text x="758" y="138" font-size="10" fill="#e84393" font-weight="bold">Woman</text>
+    <!-- Direction offset arrows -->
+    <path d="M 515 63 L 725 63" stroke="#f39c12" stroke-width="2" stroke-dasharray="5" marker-end="url(#vdir)"/>
+    <text x="620" y="52" text-anchor="middle" font-size="9" fill="#f39c12" font-weight="bold">same offset = "royalty"</text>
+    <path d="M 535 143 L 745 143" stroke="#f39c12" stroke-width="2" stroke-dasharray="5" marker-end="url(#vdir)"/>
     <!-- Formula -->
-    <rect x="440" y="200" width="380" height="35" rx="6" fill="#f0f4f8" stroke="#6c5ce7" stroke-width="1"/>
-    <text x="630" y="222" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">King − Man + Woman ≈ Queen</text>
-    <!-- Key text -->
-    <text x="630" y="260" text-anchor="middle" font-size="10" fill="#666">The same direction (gender, tense, capital) works consistently across word pairs</text>
+    <rect x="500" y="210" width="340" height="32" rx="5" fill="#f0f4f8" stroke="#6c5ce7" stroke-width="1"/>
+    <text x="670" y="231" text-anchor="middle" font-size="11" fill="#333" font-weight="bold">vec(King) − vec(Man) + vec(Woman) ≈ vec(Queen)</text>
+    <!-- Bottom note -->
+    <text x="450" y="262" text-anchor="middle" font-size="10" fill="#666">Real models: 4,096–12,288 dimensions. Similar words → similar directions. Relationships → consistent offsets.</text>
   </svg>
   <p class="citation">Mikolov et al., 2013, "Efficient Estimation of Word Representations in Vector Space," arXiv:1301.3781 · Pennington et al., 2014, "GloVe" · Visual inspired by 3Blue1Brown (2024)</p>
 </section>
@@ -431,98 +433,101 @@
 <!-- ============ MLP LAYERS ============ -->
 <section>
   <h2>Step 3: MLP Layers — The Knowledge Store</h2>
-  <p style="font-size:0.68em;">Attention routes information. MLPs <strong>store and retrieve knowledge</strong>.</p>
   <div class="two-col">
     <div>
-      <h3>What MLPs do</h3>
-      <div class="formula" style="font-size:0.85em;">MLP(x) = W₂ · σ(W₁x + b₁) + b₂</div>
-      <ul style="margin-top:0.5em;">
-        <li><strong>W₁</strong> (up-projection): pattern detector ("key")</li>
-        <li><strong>σ</strong> (activation): non-linearity (ReLU → GeLU → SwiGLU)</li>
-        <li><strong>W₂</strong> (down-projection): information to output ("value")</li>
-      </ul>
-      <p style="margin-top:0.5em; font-size:0.9em;"><strong>~66% of GPT-3's 175B parameters</strong> are in MLP layers.</p>
+      <h3>Attention = routing</h3>
+      <p>"Which tokens should talk to which?"</p>
+      <h3 style="margin-top:0.5em;">MLP = content</h3>
+      <p>"What factual knowledge to apply?"</p>
+      <div class="formula" style="font-size:0.8em; margin-top:0.5em;">MLP(x) = W₂ · σ(W₁x)</div>
+      <p style="font-size:0.8em;">W₁ detects patterns ("keys")<br>W₂ outputs info ("values")</p>
+      <p style="font-size:0.8em; margin-top:0.3em;"><strong>~66% of GPT-3's 175B params</strong> are in MLPs.</p>
     </div>
     <div>
-      <h3>Research evidence</h3>
+      <h3>Evidence: MLPs store facts</h3>
       <ul>
-        <li><strong>Knowledge Neurons:</strong> Specific neurons encode specific facts ("Eiffel Tower → Paris")</li>
-        <li><strong>Key-Value Memory:</strong> Each MLP row acts as key (pattern) + value (output info)</li>
-        <li><strong>Editing facts:</strong> Modify MLP weights → model's factual outputs change</li>
+        <li><strong>Knowledge Neurons</strong> — specific neurons encode facts like "Eiffel Tower → Paris"</li>
+        <li><strong>Key-Value Memory</strong> — each MLP row = pattern detector + output info</li>
+        <li><strong>Fact editing</strong> — modify MLP weights → model changes its answers</li>
       </ul>
       <div class="highlight-box" style="margin-top:0.5em;">
-        <strong>Intuition:</strong><br>
-        Attention = telephone switchboard (who connects to whom)<br>
-        MLP = the actual conversations (content being exchanged)
+        <strong>Analogy:</strong><br>
+        Attention = telephone switchboard<br>
+        MLP = the conversations themselves
       </div>
     </div>
   </div>
-  <p class="citation">Geva et al., 2021, "Transformer FFN Layers Are Key-Value Memories," EMNLP, arXiv:2012.14913 · Dai et al., 2022, "Knowledge Neurons," ACL, arXiv:2104.08696 · Meng et al., 2022, "ROME"</p>
+  <p class="citation">Geva et al., 2021, "Transformer FFN Layers Are Key-Value Memories," EMNLP, arXiv:2012.14913 · Dai et al., 2022, "Knowledge Neurons," ACL, arXiv:2104.08696 · Meng et al., 2022, "Locating and Editing Factual Associations" (ROME)</p>
 </section>
 
 <!-- ============ FULL ARCHITECTURE ============ -->
 <section>
   <h2>The Complete Transformer Block</h2>
-  <p style="font-size:0.68em;">One block = Attention + MLP + Residual connections + Layer Normalization. Stack 32–128 of these.</p>
-  <svg viewBox="0 0 900 200" style="width:90%;">
-    <rect x="20" y="75" width="70" height="40" rx="5" fill="#f0f4f8" stroke="#999"/><text x="55" y="100" text-anchor="middle" font-size="9" fill="#333">Input x</text>
-    <path d="M 95 95 L 120 95" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
-    <rect x="125" y="75" width="80" height="40" rx="5" fill="#fff3e0" stroke="#f39c12"/><text x="165" y="98" text-anchor="middle" font-size="8" fill="#f39c12">LayerNorm</text>
-    <path d="M 210 95 L 230 95" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
-    <rect x="235" y="65" width="120" height="60" rx="8" fill="#e8f4fd" stroke="#2980b9" stroke-width="2"/><text x="295" y="90" text-anchor="middle" font-size="9" fill="#2980b9" font-weight="bold">Multi-Head</text><text x="295" y="105" text-anchor="middle" font-size="9" fill="#2980b9" font-weight="bold">Attention</text><text x="295" y="118" text-anchor="middle" font-size="7" fill="#666">contextualize</text>
-    <path d="M 360 95 L 385 95" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
-    <circle cx="400" cy="95" r="11" fill="#ffeaa7" stroke="#f39c12"/><text x="400" y="100" text-anchor="middle" font-size="11">+</text>
-    <path d="M 415 95 L 440 95" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
-    <rect x="445" y="75" width="80" height="40" rx="5" fill="#fff3e0" stroke="#f39c12"/><text x="485" y="98" text-anchor="middle" font-size="8" fill="#f39c12">LayerNorm</text>
-    <path d="M 530 95 L 550 95" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
-    <rect x="555" y="65" width="100" height="60" rx="8" fill="#e8f8f5" stroke="#00b894" stroke-width="2"/><text x="605" y="92" text-anchor="middle" font-size="9" fill="#00b894" font-weight="bold">MLP</text><text x="605" y="108" text-anchor="middle" font-size="7" fill="#666">store/transform</text>
-    <path d="M 660 95 L 685 95" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
-    <circle cx="700" cy="95" r="11" fill="#ffeaa7" stroke="#f39c12"/><text x="700" y="100" text-anchor="middle" font-size="11">+</text>
-    <path d="M 715 95 L 750 95" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
-    <rect x="755" y="75" width="70" height="40" rx="5" fill="#6c5ce7" opacity="0.15" stroke="#6c5ce7"/><text x="790" y="100" text-anchor="middle" font-size="9" fill="#6c5ce7" font-weight="bold">Output</text>
-    <!-- Residual lines -->
-    <path d="M 55 120 L 55 145 L 400 145 L 400 110" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
-    <path d="M 400 110 L 400 145 L 700 145 L 700 110" stroke="#999" stroke-width="1" stroke-dasharray="4"/>
-    <text x="225" y="155" font-size="7" fill="#999">residual connection</text>
-    <text x="545" y="155" font-size="7" fill="#999">residual connection</text>
+  <p style="font-size:0.65em;">One block = Attention + MLP + residual connections + layer norm. Stack 32–128 of these = a full LLM.</p>
+  <svg viewBox="0 0 850 150" style="width:92%; margin-top:0.3em;">
+    <rect x="10" y="50" width="65" height="40" rx="5" fill="#f0f4f8" stroke="#999"/><text x="42" y="74" text-anchor="middle" font-size="9" fill="#333">Input</text>
+    <path d="M 80 70 L 100 70" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
+    <rect x="105" y="50" width="75" height="40" rx="5" fill="#fff3e0" stroke="#f39c12"/><text x="142" y="74" text-anchor="middle" font-size="8" fill="#f39c12">LayerNorm</text>
+    <path d="M 185 70 L 205 70" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
+    <rect x="210" y="45" width="110" height="50" rx="7" fill="#e8f4fd" stroke="#2980b9" stroke-width="2"/><text x="265" y="68" text-anchor="middle" font-size="9" fill="#2980b9" font-weight="bold">Multi-Head</text><text x="265" y="82" text-anchor="middle" font-size="9" fill="#2980b9">Attention</text>
+    <path d="M 325 70 L 345 70" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
+    <circle cx="358" cy="70" r="10" fill="none" stroke="#f39c12" stroke-width="1.5"/><text x="358" y="74" text-anchor="middle" font-size="11" fill="#f39c12">+</text>
+    <path d="M 372 70 L 392 70" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
+    <rect x="397" y="50" width="75" height="40" rx="5" fill="#fff3e0" stroke="#f39c12"/><text x="434" y="74" text-anchor="middle" font-size="8" fill="#f39c12">LayerNorm</text>
+    <path d="M 477 70 L 497 70" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
+    <rect x="502" y="45" width="90" height="50" rx="7" fill="#e8f8f5" stroke="#00b894" stroke-width="2"/><text x="547" y="68" text-anchor="middle" font-size="9" fill="#00b894" font-weight="bold">MLP</text><text x="547" y="82" text-anchor="middle" font-size="8" fill="#666">knowledge</text>
+    <path d="M 597 70 L 617 70" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
+    <circle cx="630" cy="70" r="10" fill="none" stroke="#f39c12" stroke-width="1.5"/><text x="630" y="74" text-anchor="middle" font-size="11" fill="#f39c12">+</text>
+    <path d="M 644 70 L 670 70" stroke="#999" stroke-width="1.5" marker-end="url(#fa)"/>
+    <rect x="675" y="50" width="65" height="40" rx="5" fill="#6c5ce7" opacity="0.15" stroke="#6c5ce7"/><text x="707" y="74" text-anchor="middle" font-size="9" fill="#6c5ce7">Output</text>
+    <!-- Residual skip lines (curved, no fill) -->
+    <path d="M 42 92 Q 42 115 200 115 Q 358 115 358 82" fill="none" stroke="#aaa" stroke-width="1" stroke-dasharray="3"/>
+    <path d="M 358 82 Q 490 115 630 82" fill="none" stroke="#aaa" stroke-width="1" stroke-dasharray="3"/>
+    <text x="200" y="128" font-size="7" fill="#999">residual</text><text x="490" y="128" font-size="7" fill="#999">residual</text>
     <defs><marker id="fa" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto"><polygon points="0 0, 6 2, 0 4" fill="#999"/></marker></defs>
-    <!-- Labels -->
-    <text x="450" y="30" text-anchor="middle" font-size="13" fill="#6c5ce7" font-weight="bold">× 32–128 layers = a full LLM</text>
-    <text x="450" y="50" text-anchor="middle" font-size="10" fill="#666">Original: 6 layers, 65M params  ·  GPT-3: 96 layers, 175B  ·  Llama 3: 126 layers, 405B</text>
-    <!-- Bottom -->
-    <text x="450" y="185" text-anchor="middle" font-size="10" fill="#333">Architecture barely changed since 2017. Scale, data, and training methods drove all breakthroughs.</text>
   </svg>
-  <p class="citation">Vaswani et al., 2017 · All major LLMs (GPT-4, Claude, Gemini, Llama, Mistral) use this exact block structure with minor variations</p>
+  <p style="font-size:0.7em; margin-top:0.3em; color:var(--accent); font-weight:600;">× 32–128 layers = a full LLM</p>
+  <table style="margin-top:0.3em;">
+    <tr><th>Model</th><th>Layers</th><th>Params</th><th>Year</th></tr>
+    <tr><td>Original Transformer</td><td>6+6</td><td>65M</td><td>2017</td></tr>
+    <tr><td>GPT-3</td><td>96</td><td>175B</td><td>2020</td></tr>
+    <tr><td>Llama 3</td><td>126</td><td>405B</td><td>2024</td></tr>
+  </table>
+  <p style="font-size:0.65em; color:#666;">Architecture is nearly identical to 2017. Scale, data, and training methods drove ALL capability breakthroughs.</p>
+  <p class="citation">Vaswani et al., 2017 · All modern LLMs (GPT-4, Claude, Gemini, Llama, Mistral) use this block structure</p>
 </section>
 
 
 <!-- ============ WHY TRANSFORMERS WON ============ -->
 <section>
-  <h2>Why Transformers Replaced Everything</h2>
+  <h2>Why Transformers Won — and What They Cannot Do</h2>
   <div class="two-col">
     <div>
-      <h3 style="color:var(--green);">The Wins (vs. RNNs/LSTMs)</h3>
-      <table>
-        <tr><th>Property</th><th>RNNs</th><th>Transformers</th></tr>
-        <tr><td>Training</td><td>Sequential</td><td><strong>Fully parallel</strong></td></tr>
-        <tr><td>Long-range deps</td><td>O(n) path</td><td><strong>O(1) path</strong></td></tr>
-        <tr><td>Gradient flow</td><td>Vanish/explode</td><td><strong>Stable (residuals)</strong></td></tr>
-        <tr><td>Training time</td><td>Weeks</td><td><strong>3.5 days</strong></td></tr>
-        <tr><td>BLEU EN→DE</td><td>~24</td><td><strong>28.4 (+18%)</strong></td></tr>
-      </table>
+      <h3 style="color:var(--green);">Why they dominate (since 2017)</h3>
+      <ul>
+        <li><strong>Parallelizable</strong> — 100× faster training vs. RNNs</li>
+        <li><strong>O(1) token-to-token path</strong> — no vanishing gradients</li>
+        <li><strong>Scales predictably</strong> — power-law improvement with compute</li>
+        <li>BLEU 28.4 EN→DE (new SOTA at fraction of RNN cost)</li>
+        <li>One architecture → BERT, GPT, T5, Llama, Claude, Gemini</li>
+      </ul>
     </div>
     <div>
-      <h3 style="color:var(--red);">Known Limitations</h3>
+      <h3 style="color:var(--red);">Fundamental limitations</h3>
       <ul>
-        <li><strong>O(n²) memory</strong> — 128K tokens = 16.4 billion attention entries per head per layer</li>
-        <li><strong>Autoregressive</strong> — generates left-to-right, no native backtracking or planning</li>
-        <li><strong>No world model</strong> — knowledge is implicit in weights, can't be verified</li>
-        <li><strong>Hallucination</strong> — confident about wrong facts (no self-checking mechanism)</li>
+        <li><strong>O(n²) memory</strong> — 128K tokens = 16.4B entries per head/layer</li>
+        <li><strong>Cannot plan</strong> — "LLMs can't plan, but can help planning" (Kambhampati, ICML 2024)</li>
+        <li><strong>Cannot self-verify</strong> — no mechanism to check own outputs</li>
+        <li><strong>Approximate retrieval, not reasoning</strong> — perceived reasoning from exemplar similarity</li>
+        <li><strong>No world model</strong> — "lack ability to understand physical world, remember, reason, plan" (LeCun, 2024)</li>
       </ul>
-      <p style="font-size:0.85em; margin-top:0.5em;">These limitations drive active research: Mamba (O(n)), JEPA (world models), test-time compute (planning).</p>
     </div>
   </div>
-  <p class="citation">Vaswani et al., 2017 · Gu & Dao, 2023 (Mamba, arXiv:2312.00752) · LeCun, 2022 (JEPA) · OpenAI o1 (2024, test-time compute)</p>
+  <div class="warn-box" style="margin-top:0.5em;">
+    <strong>Kambhampati (2024):</strong> "Auto-regressive LLMs cannot, by themselves, do planning or self-verification. The perceived reasoning abilities stem from exemplar-query similarity and approximate retrieval rather than any inherent reasoning."<br>
+    <strong>LeCun (2024, Harvard):</strong> "Current AI architectures such as Auto-Regressive LLMs fall short [of learning, remembering, reasoning, and planning]. I propose a modular cognitive architecture [JEPA] as a path forward."
+  </div>
+  <p class="citation">Vaswani et al., 2017 · Kambhampati, 2024, "LLMs Can't Plan, But Can Help Planning in LLM-Modulo Frameworks," ICML, arXiv:2402.01817 · Kambhampati, 2024, "Can Large Language Models Reason and Plan?" arXiv:2403.04121 · LeCun, 2024, "Objective-Driven AI" (Harvard Ding Shum Lecture)</p>
 </section>
 
 <!-- ============ JEPA — THE FRONTIER ============ -->
