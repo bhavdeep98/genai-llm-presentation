@@ -17,35 +17,81 @@
 
 ---
 
-## Section 1: The Foundation — Transformers (15 min)
+## Section 1: The Foundation — LLM Architecture (20 min)
 
-### Slide 3: Before Transformers — The Problem
-- RNNs: Sequential (slow), forget long-range patterns
-- Visual: Sequential vs. parallel processing diagram
-- Key question: "What if we could look at everything at once?"
+### Slide 3: What Is an LLM, Really?
+- A next-token prediction machine — given context, predict what comes next
+- **Mystery novel analogy:** The story is the context, the clues are the relevant information, the last word to predict is "the murderer is ___"
+- There's a probability distribution over many possible answers — but only one is correct
+- The architecture's job: figure out which clue matters most for the prediction
+- Visual: A sentence with the last word blanked, probability bars over candidates
 
-### Slide 4: The Attention Mechanism
-- Q, K, V intuition: "What am I looking for?" / "What do I offer?" / "What information do I give?"
+### Slide 4: Embeddings — Words as Vectors in Space
+- Words aren't symbols to a model — they become points in high-dimensional space
+- Intuition: "King" − "Man" + "Woman" ≈ "Queen" (directions encode meaning)
+- Similar words cluster together; dissimilar words are far apart
+- Each dimension captures some feature (formal/informal, concrete/abstract, etc.)
+- Modern LLMs use ~4096-12288 dimensional spaces
+- [Paper: Mikolov et al., 2013, "Efficient Estimation of Word Representations in Vector Space," arXiv:1301.3781]
+- Visual: 2D/3D projection of word clusters, showing relationships as geometric directions
+
+### Slide 5: The Attention Mechanism — Who Should I Listen To?
+- The core question: given a word, which OTHER words in the context matter most?
+- **Q, K, V intuition (credit: 3Blue1Brown):**
+  - Query: "What am I looking for?"
+  - Key: "What do I offer?"
+  - Value: "What information do I give if you pick me?"
+- Analogy: Q is the detective's question, K is which clues respond to that question, V is what those clues actually reveal
 - Formula: Attention(Q,K,V) = softmax(QK^T/√d_k)V
+- The softmax creates a probability distribution — a weighted vote on relevance
+- [Paper: Vaswani et al., 2017, "Attention Is All You Need," arXiv:1706.03762]
+- [Visual reference: 3Blue1Brown "Attention in transformers, step-by-step" (2024)]
 - Visual: Attention weights matrix showing which words attend to which
-- [Paper: Vaswani et al., 2017, arXiv:1706.03762]
 
-### Slide 5: Multi-Head Attention
+### Slide 6: Multi-Head Attention — Multiple Perspectives
 - Why multiple heads: different heads learn different relationships
-- One head for syntax, another for semantics, another for position
+- One head for syntax ("what grammatically connects"), another for coreference ("who does 'they' refer to"), another for semantic similarity
+- Like having 8-128 detectives each following a different line of investigation
 - Visual: Split → parallel attention → concatenate
 - 8 heads in original paper, 32-128 in modern models
 
-### Slide 6: The Full Transformer
-- Encoder-Decoder architecture diagram
-- Key components: positional encoding, residual connections, layer norm, FFN
-- Visual: The iconic Figure 1 from the paper
+### Slide 7: The MLP Layers — Where Facts Live
+- Attention finds relationships; MLP layers store knowledge
+- Think of MLPs as the model's "memory of facts and nuance"
+- Research shows: factual associations (e.g., "Eiffel Tower is in ___") are encoded in MLP weights
+- MLP acts like a key-value store — input pattern triggers stored knowledge
+- Attention = routing/wiring; MLP = the actual content being routed
+- [Paper: Dai et al., 2022, "Knowledge Neurons in Pretrained Transformers," arXiv:2104.08696]
+- [Paper: Geva et al., 2021, "Transformer Feed-Forward Layers Are Key-Value Memories," arXiv:2012.14913]
+- Visual: Simplified diagram showing Attention → MLP interplay in one transformer block
 
-### Slide 7: Why This Changed Everything
+### Slide 8: The Full Transformer Architecture
+- Stack attention + MLP + residual connections + layer norm = one block
+- Repeat 32-128 times = a full LLM
+- Encoder-Decoder (original) → Decoder-only (GPT-style) is what most modern LLMs use
+- Key components: positional encoding, residual connections, layer normalization
+- Visual: The iconic Figure 1 from Vaswani et al. (adapted for decoder-only)
+
+### Slide 9: Why Transformers Won (But They're Not the End)
 - Fully parallelizable → 100x faster training than RNNs
-- O(1) path length between any two positions
+- O(1) path length between any two positions (vs. O(n) for RNNs)
 - BLEU 28.4 on English-German (new SOTA at fraction of cost)
-- Set the stage for everything that follows
+- **But:** O(n²) attention complexity limits context length
+- **But:** Autoregressive prediction ≠ understanding/planning
+- These limitations motivate the next frontier...
+
+### Slide 10: The Frontier — Beyond Token Prediction (JEPA)
+- LLMs predict the *next token* — but is that how intelligence works?
+- Yann LeCun's argument: humans build *world models*, not word predictors
+- **JEPA (Joint Embedding Predictive Architecture):** predict in *representation space*, not pixel/token space
+- Key difference: JEPA learns abstract representations that discard irrelevant details
+- I-JEPA (images, 2023): predicts missing patches in latent space, not pixel space
+- V-JEPA (video, 2024): learns temporal structure without generating pixels
+- Not a replacement for transformers today — but a research frontier addressing fundamental limitations
+- [Paper: LeCun, 2022, "A Path Towards Autonomous Machine Intelligence" (position paper)]
+- [Paper: Assran et al., 2023, "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture," arXiv:2301.08243]
+- [Org: Meta AI — I-JEPA, V-JEPA]
+- Visual: Autoregressive (predict token by token) vs. JEPA (predict in latent space) comparison diagram
 
 ---
 
@@ -248,12 +294,12 @@
 ## Timing Summary
 | Section | Duration | Slides |
 |---------|----------|--------|
-| Transformers | 15 min | 3-7 |
-| Scaling/GPT | 12 min | 8-11 |
-| Alignment | 12 min | 12-15 |
-| Fine-Tuning/LoRA | 15 min | 16-21 |
-| APIs/RAG/Agents | 12 min | 22-25 |
-| Architectures | 8 min | 26-28 |
-| Hype vs. Reality | 8 min | 29-31 |
-| Call to Action | 5 min | 32-34 |
-| **Total** | **~87 min** | **34 slides** |
+| LLM Architecture | 20 min | 3-10 |
+| Scaling/GPT | 12 min | 11-14 |
+| Alignment | 12 min | 15-18 |
+| Fine-Tuning/LoRA | 15 min | 19-24 |
+| APIs/RAG/Agents | 12 min | 25-28 |
+| Architectures | 8 min | 29-31 |
+| Hype vs. Reality | 8 min | 32-34 |
+| Call to Action | 5 min | 35-37 |
+| **Total** | **~92 min** | **37 slides** |

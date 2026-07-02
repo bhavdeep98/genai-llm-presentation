@@ -38,7 +38,7 @@ Where:
 5. To switch tasks: swap out the A, B matrices (small files)
 
 ### Why Rank r Works
-- Aghajanyan et al. (2020) showed pre-trained models have low "intrinsic dimensionality"
+- Aghajanyan et al. (2021, ACL) showed pre-trained models have low "intrinsic dimensionality"
 - Most of the information for a new task can be captured in a low-rank subspace
 - Higher ranks capture more but with diminishing returns
 - Typical effective rank: 4-16 for most tasks
