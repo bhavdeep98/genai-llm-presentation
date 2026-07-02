@@ -19,18 +19,18 @@
       --bg-light: #fafafa;
     }
     .reveal { font-family: 'Segoe UI', system-ui, sans-serif; }
-    .reveal h1 { font-size: 2.1em; font-weight: 700; color: var(--heading); }
-    .reveal h2 { font-size: 1.45em; font-weight: 600; color: var(--heading); margin-bottom: 0.3em; }
-    .reveal h3 { font-size: 1.05em; font-weight: 600; color: #444; }
-    .reveal p, .reveal li { font-size: 0.68em; line-height: 1.55; }
+    .reveal h1 { font-size: 1.9em; font-weight: 700; color: var(--heading); }
+    .reveal h2 { font-size: 1.35em; font-weight: 600; color: var(--heading); margin-bottom: 0.3em; }
+    .reveal h3 { font-size: 0.95em; font-weight: 600; color: #444; }
+    .reveal p, .reveal li { font-size: 0.63em; line-height: 1.5; }
     .reveal ul { margin-left: 0.5em; }
     .reveal .subtitle { font-size: 0.8em; color: #666; }
     .reveal .citation { font-size: 0.48em; color: #aaa; font-style: italic; margin-top: 1em; }
     .reveal .formula { font-family: 'Courier New', monospace; background: #f0f4f8; padding: 0.5em 0.9em; border-radius: 6px; font-size: 0.72em; display: inline-block; margin: 0.3em 0; }
     .reveal .analogy { background: #f8f6ff; border-left: 4px solid var(--accent); padding: 0.5em 0.9em; border-radius: 0 6px 6px 0; margin: 0.5em 0; font-size: 0.64em; text-align: left; }
     .reveal .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em; text-align: left; }
-    .reveal .highlight-box { background: #e8f4fd; border-radius: 6px; padding: 0.5em 0.7em; margin: 0.3em 0; font-size: 0.64em; }
-    .reveal .warn-box { background: #fff3e0; border-left: 4px solid var(--orange); padding: 0.5em 0.7em; border-radius: 0 6px 6px 0; margin: 0.3em 0; font-size: 0.64em; }
+    .reveal .highlight-box { background: #e8f4fd; border-radius: 6px; padding: 0.4em 0.6em; margin: 0.3em 0; font-size: 0.58em; }
+    .reveal .warn-box { background: #fff3e0; border-left: 4px solid var(--orange); padding: 0.4em 0.6em; border-radius: 0 6px 6px 0; margin: 0.3em 0; font-size: 0.58em; }
     .reveal .section-label { color: var(--accent); font-size: 0.6em; text-transform: uppercase; letter-spacing: 3px; }
     .reveal table { font-size: 0.55em; margin: 0.3em auto; border-collapse: collapse; }
     .reveal table th { background: var(--heading); color: white; padding: 0.35em 0.6em; }
@@ -41,6 +41,7 @@
     .reveal svg text { font-family: 'Segoe UI', system-ui, sans-serif; }
     .reveal .speaker-intro { display: grid; grid-template-columns: auto 1fr; gap: 1.5em; align-items: center; text-align: left; }
     .reveal .speaker-intro img { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); }
+    .reveal section { overflow: hidden; }
   </style>
 </head>
 <body>
@@ -530,38 +531,6 @@
   <p class="citation">Vaswani et al., 2017 · Kambhampati, 2024, "LLMs Can't Plan, But Can Help Planning in LLM-Modulo Frameworks," ICML, arXiv:2402.01817 · Kambhampati, 2024, "Can Large Language Models Reason and Plan?" arXiv:2403.04121 · LeCun, 2024, "Objective-Driven AI" (Harvard Ding Shum Lecture)</p>
 </section>
 
-<!-- ============ JEPA — THE FRONTIER ============ -->
-<section>
-  <h2>Beyond Token Prediction: JEPA</h2>
-  <p class="section-label">Joint Embedding Predictive Architecture (LeCun, 2022)</p>
-  <div class="two-col" style="margin-top:0.5em;">
-    <div>
-      <h3 style="color:var(--red);">Autoregressive LLMs</h3>
-      <p>Predict the <strong>next token</strong> in vocabulary space</p>
-      <p style="font-size:0.85em;"><em>"The cat sat on the ___"</em> → P(mat)=0.3...</p>
-      <ul style="font-size:0.85em;">
-        <li>Must predict exact surface form</li>
-        <li>Wastes capacity on irrelevant details</li>
-        <li>No explicit planning/reasoning</li>
-      </ul>
-    </div>
-    <div>
-      <h3 style="color:var(--green);">JEPA (LeCun's proposal)</h3>
-      <p>Predict <strong>representations</strong> in abstract latent space</p>
-      <p style="font-size:0.85em;"><em>[abstract features] → [abstract target]</em></p>
-      <ul style="font-size:0.85em;">
-        <li>Discards irrelevant surface details</li>
-        <li>Learns world models, not word sequences</li>
-        <li>Basis for planning and reasoning</li>
-      </ul>
-    </div>
-  </div>
-  <div class="highlight-box" style="margin-top:0.5em;">
-    <strong>Status (2024-2026):</strong> I-JEPA (images, Meta 2023) and V-JEPA (video, Meta 2024) show the concept works. Not yet proven at LLM-scale for language. This is a research frontier, not a deployed solution.
-  </div>
-  <p class="citation">LeCun, 2022, "A Path Towards Autonomous Machine Intelligence" · Assran et al., 2023, arXiv:2301.08243 (I-JEPA) · Meta AI, V-JEPA, 2024</p>
-</section>
-
 <!-- ============ SECTION 1 RECAP ============ -->
 <section>
   <h2>Section 1 — Summary</h2>
@@ -606,9 +575,9 @@
     transition: 'slide',
     transitionSpeed: 'default',
     center: true,
-    width: 1200,
+    width: 1100,
     height: 700,
-    margin: 0.07
+    margin: 0.12
   });
 </script>
 </body>
